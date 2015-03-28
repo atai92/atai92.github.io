@@ -1,0 +1,38 @@
+html, body {
+    margin:0;
+    padding:0;
+    height: 100%;
+    background-color: 93DCF5;
+}
+
+#container {
+    height:100%;
+    position:relative;
+}
+
+#footerbar {
+    position:absolute;
+    bottom:2%;
+    width:98%;
+    height:60px;
+    padding-right: 1%;
+    padding-left:1%;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.icon {
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    height: 100%;
+    width: auto;
+    right:0;
+    float:right;
+}
+
+.text {
+    padding:1%;
+}
