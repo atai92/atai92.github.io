@@ -7,32 +7,96 @@ html, body {
 
 #container {
     height:100%;
+    width:100%;
     position:relative;
+    background-color: 000000;
+}
+
+#headerbar {
+  position: static;
+  width: 100%;
+  height: 5%;
+  background-color: ffffff;
+  text-align: center;
+  font-size: 5vh;
+  min-height:40px;
+}
+
+#contents {
+  position: static;
+  width: 800px;
+  height: 92%;
+  margin: auto;
+  overflow: auto;
+  background-color: ffffff;
+  min-height: 300px;
 }
 
 #footerbar {
-    position:absolute;
-    bottom:2%;
-    width:98%;
-    height:60px;
-    padding-right: 1%;
-    padding-left:1%;
+  position: static;
+  width: 100%;
+  height: 3%;
+  text-align: center;
+  text-size: 3vh;
+  min-height:20px;
+  background-color: ffffff;
+  text-color: grey;
+}
+
+#linksbar {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background-color: f0f0f0;
+}
+
+.linksbutton {
+  display: inline-block;
+  padding: auto;
+  margin: auto;
+  text-size: 20px;
+}
+
+ul {
+  display: inline-block;
+  padding: auto;
+}
+
+li {
+  display: inline-block;
+  text-align: center;
+  padding: auto;
+}
+
+a {
+  padding-left:12%;
+  padding-right:5%;
+  line-height: 50px;
+}
+
+#content_container {
+  width: 100%;
+  min-height: 300px;
+}
+
+.content_holder {
+  width: 97%;
+  min-height: 200px;
+  margin:0 auto;
+  padding-top:15px;
 }
 
 img {
-    max-height: 100%;
-    max-width: 100%;
+  float: left;
+  display: inline;
+  margin: 5px 10px;
+  border: 1px solid gray;
 }
 
-.icon {
-    padding-left: 0.5%;
-    padding-right: 0.5%;
-    height: 100%;
-    width: auto;
-    right:0;
-    float:right;
+h1 {
+  float: left;
 }
 
-.text {
-    padding:1%;
+p {
+  float: left;
 }
