@@ -1,0 +1,32 @@
+#step-bar-container {
+  position: fixed;
+  bottom: 0%;
+  width: 80%;
+  height: 10vw;
+  left: 10%;
+}
+
+.circle {
+    display: inline-block;
+    position: static;
+    border-radius: 8vw;
+    height: 8vw;
+    width: 8vw;
+    text-align: center;
+    line-height: 8vw;
+    margin: 0;
+    padding: 0;
+    background-color: #848484;
+    color: white;
+    border: 1px solid #E4E4E4;
+}
+
+.bar {
+    display: inline-block;
+    position: static;
+    border: 1.75px solid #E4E4E4;
+    width: 10%;
+    margin-left:-3px;
+    margin-right:-3px;
+    margin-bottom: 3px;
+}
