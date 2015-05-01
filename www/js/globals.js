@@ -30,7 +30,7 @@ var recording_voice = false;
 var allow_voice_rec = true;
 var timer_on = false;
 var allow_timer = true;
-var record_time_limit = 1;	// seconds
+var record_time_limit = 3;	// seconds
 
 // Step Counter Colors
 var scc0 = "rgb(239,239,239)";

@@ -14,8 +14,8 @@
         var recInterval = setInterval(function() {
             recTime = recTime + 1;
 			picAnimationDino1(recTime, "voice_rec_timer_pic");
-			setAudioPosition(recTime + " sec");
-			
+			setAudioPosition("<h3>" + (record_time_limit - recTime) + " secs</h3>");
+
             if (recTime >= record_time_limit) {
                 clearInterval(recInterval);
 				onStopVoiceRec();
@@ -23,7 +23,7 @@
             }
 
         }, 1000);
-		
+
     }
 
     // device APIs are available
@@ -45,7 +45,7 @@
               'message: ' + error.message + '\n');
 		recording_voice = false;
 		allow_voice_rec = true;
-	
+
     }
 
 function setAudioPosition(position) {
@@ -56,4 +56,3 @@ function onStopVoiceRec(){
 	recording_voice = false;
 	dispTimeUp("block");
 }
-	

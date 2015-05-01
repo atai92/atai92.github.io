@@ -2,14 +2,14 @@
   height: 100vh;
   width: 100vw;
   overflow: auto;
-  background-color: #E4E4E4;
+  background-color: white;
 }
 
 #summary-content {
   height: 100vh;
   width: 100vw;
   overflow: auto;
-  background-color: #E4E4E4;
+  background-color: white;
 }
 
 #summary-content img {
