@@ -19,6 +19,8 @@ ez.c('overlay_start', function(event) {
   currStepNum = 1;
   stepName = 'empathy';
   counterColorStep(currStepNum);
+  		toolbox.populate_tools();
+		hideAllTools();
   changeInstr();
   ez.hide('create_project');
   ez.show('top_bar');
@@ -44,6 +46,32 @@ ez.c('op_OK', function(event) {
     }
   }
 });
+
+function hideClass(myClass){
+	var toHide = document.getElementsByClassName(myClass);
+    for (var v=0; v < toHide.length; v++) {
+        toHide[v].style.display = 'none';
+    }
+}
+
+function showClass(myClass){
+	var toShow = document.getElementsByClassName(myClass);
+    for (var v=0; v < toShow.length; v++) {
+        toShow[v].style.display = 'block';
+    }
+}
+
+function hideAllTools(){
+	hideClass('empathy-tool');
+	hideClass('define-tool');
+	hideClass('ideate-tool');
+	hideClass('prototype-tool');
+	hideClass('test-tool');
+}
+function changeClass(myElement, myClass){
+	ez.get_ele(myElement).className = myClass;
+}
+
 
 // change color of step counter
 function circleColor(one, two, three, four, five){
@@ -131,34 +159,34 @@ function dispStep(nextStep){
 	ez.get_ele("b_step_instr").style.display = nextStep;
 }
 function dispRec(rec){
-	ez.get_ele("b_step_vid_voice_rec").style.display = rec;
+	ez.get_ele("b_step_vid_voice_rec").style.display = 'inline-block'; //rec;
 }
 function dispQuest(quest){
-	ez.get_ele("b_step_int_questions").style.display = quest;
+	ez.get_ele("b_step_int_questions").style.display = 'inline-block'; //quest;
 }
 function dispQuest2(quest2){
-	ez.get_ele("b_step_int_questions_2").style.display = quest2;
+	ez.get_ele("b_step_int_questions_2").style.display = 'inline-block'; //quest2;
 }
 function dispPic(pic){
-	ez.get_ele("b_step_take_pic").style.display = pic;
+	ez.get_ele("b_step_take_pic").style.display = 'inline-block'; //pic;
 }
 function dispTool(tool){
-	ez.get_ele("b_step_toolbox").style.display = tool;
+	ez.get_ele("b_step_toolbox").style.display = 'inline-block'; //tool;
 }
 function dispTimeUp(timeUp){
 	ez.get_ele("b_step_time_up").style.display = timeUp;
 }
 function dispVid(vid){
-	ez.get_ele("b_step_vid_rec").style.display = vid;
+	ez.get_ele("b_step_vid_rec").style.display = 'inline-block'; //vid;
 }
 function dispVoice(voice){
-	ez.get_ele("b_step_voice_rec").style.display = voice;
+	ez.get_ele("b_step_voice_rec").style.display = 'inline-block'; //voice;
 }
 function dispToolDone(toolDone){
 	ez.get_ele("b_toolbox_done").style.display = toolDone;
 }
 function dispTakePic(take){
-	ez.get_ele("b_take_pic").style.display = take;
+	ez.get_ele("b_take_pic").style.display = 'inline-block'; //take;
 }
 function dispPicNextStep(next){
 	ez.get_ele("b_pic_next").style.display = next;
@@ -172,6 +200,29 @@ function dispEnd(allDone){
 
 
 
+// step headers
+function changeStepHeaderWheel(myColor, myPic){
+	ez.get_ele("step_name_bar").style.color = myColor;
+	ez.get_ele("step_color_wheel").src = myPic;
+}
+function changeStepHeader(myTitle){
+	ez.get_ele("step_name_bar").innerHTML = myTitle;
+}
+function changeSubStepHeader(myTitle){
+	ez.get_ele("step_subname_bar").innerHTML = myTitle;
+}
+function changeTimeLimitHeader(myTitle){
+	ez.get_ele("step_time_limit").textContent = myTitle;
+}
+function toggleTimerOn(){
+	//ez.get_ele("time-icon").src = "img/hourglass.png";
+	ez.get_ele("time-icon").src = "img/main/timer-active.png";
+}
+function toggleTimerOff(){
+	//ez.get_ele("time-icon").src = "img/hourglassG.png";
+	ez.get_ele("time-icon").src = "img/main/timer-inactive.png";
+}
+
 function changeTitle(myTitle){
 	ez.get_ele("step_title").innerHTML = myTitle;
 	ez.get_ele("photo_capture_title").innerHTML = myTitle;
@@ -184,8 +235,6 @@ function changeButtonText(myButtonText){
 }
 function changePic(myPic){
 	ez.get_ele("step_pic").src = myPic;
-	//ez.get_ele("photo_capture_pic").src = myPic;
-
 }
 
 // click buttons for instruction page
@@ -213,17 +262,26 @@ ez.c("start_voice_rec", function(event){
 	if (!recording_voice & allow_voice_rec)
 		startVoiceRec();
 });
+ez.c("b_step_vid_rec", function(event){
+	showVidRec();
+});
+ez.c("start_vid_rec", function(event){
+	if (allow_vid_rec)
+		startVidRec();
+});
 ez.c("b_step_time_up", function(event){
 	ez.hide("vid_voice_rec");
 	ez.hide("vid_rec");
 	ez.hide("voice_rec");
 	ez.show("step_instr");
-  ez.show('step_pic');
+    ez.show('step_pic');
 
 	// reset voice page parameters
 	recording_voice = false;
 	allow_voice_rec = true;
+	allow_vid_rec = true;
 	ez.get_ele("start_voice_rec").style.backgroundColor = "#ea4e4e";
+	ez.get_ele("start_vid_rec").style.backgroundColor = "#ea4e4e";
 	ez.get_ele("start_voice_rec_word").innerHTML = "<h3>Record</h3>";
 	ez.get_ele("voice_rec_timer_pic").src = "img/empathy/interview-animation/1.png";
 
@@ -257,6 +315,11 @@ ez.c("b_timer_done", function(event){
 	ez.get_ele("start_timer").style.backgroundColor = "#ea4e4e";
 	ez.get_ele("start_timer_word").innerHTML = "<h3>Start Timer</h3>";
 	ez.hide("timer");
+	ez.show("step_pic_div");
+	ez.get_ele("timer_pic").src = "img/ideate/timer/1.png";
+	
+	changeTimeLimitHeader(" ");
+	toggleTimerOff();
 
 	var text = "Now, take pictures of any notes or sketches you made for this step. ";
 	changeText(text);
@@ -275,6 +338,7 @@ function changeInstr(){
 	switch(currStep){
 		case 'e_start':
 			stepName = 'empathy';
+
 			title = "1. Empathy";
 			text = 	"Empathy is the ability to understand and share the feelings of another. " +
 				"We must first come to understand our user in order to properly identify their needs. " +
@@ -285,6 +349,12 @@ function changeInstr(){
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
+			//changeStepHeaderWheel(scc1, 'img/color-wheel/step1.png');
+			changeStepHeaderWheel(scc1, 'img/main/wheel/step1.png');
+			changeStepHeader("Empathy (1/4): ");
+			changeSubStepHeader("Introduction ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
 			dispStep("block");
@@ -294,11 +364,15 @@ function changeInstr(){
 		case 'e_int1':
 			title = "Interview";
 			text = 	"In this initial step, you will get to understand the user by asking open-ended questions (what/why/why not)." +
-				"Take a look at the example questions if you are unsure what type of open-ended questions to ask. You want to get your partner to tell you as many stories as they can within the time limit! <br /><br />Click proceed when you are ready to start the interview!";
+				"Take a look at the example questions if you are unsure what type of open-ended questions to ask. You want to get your partner to tell you as many stories as they can within the time limit!";
 			pic = "img/empathy/interview/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Empathy (2/4): ");
+			changeSubStepHeader("Interview #1 ");
+			changeTimeLimitHeader("5:00 ");
+			toggleTimerOn();
 
 			hideButtons();
 			dispQuest("block");
@@ -315,6 +389,10 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Empathy (3/4): ");
+			changeSubStepHeader("Interview #2 ");
+			changeTimeLimitHeader("5:00 ");
+			toggleTimerOn();
 
 			hideButtons();
 			dispQuest("block");
@@ -331,8 +409,14 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Empathy (3/4): ");
+			changeSubStepHeader("Empathy Tool ");
+			changeTimeLimitHeader("3:00 ");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('empathy-tool');
 			dispTool("block");
 
 			currStep='e_complete';
@@ -341,11 +425,18 @@ function changeInstr(){
 			title = "Empathy Done";
 			text = 	"You have gotten to understand your user. Now on to the next step!";
 			pic = "img/empathy.png";
+			buttonText = "Next Step: Define";
+			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Empathy (4/4): ");
+			changeSubStepHeader("Step Complete ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "next_step_button_div");
 			dispStep("block");
 
 			currStep='d_start';
@@ -360,11 +451,20 @@ function changeInstr(){
 			text = 	"It's time to define the problem based on how you understood your partner. " +
 					"Try to make the correct problem clearer and more focused by checking with your partner.";
 			pic = "img/define.png";
+			buttonText = "Start!";
+			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			//changeStepHeaderWheel(scc2, 'img/color-wheel/step2.png');
+			changeStepHeaderWheel(scc2, 'img/main/wheel/step2.png');
+			changeStepHeader("Define (1/4): ");
+			changeSubStepHeader("Introduction ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "page_content_button_div");
 			dispStep("block");
 
 			currStep='d_tool1';
@@ -377,16 +477,21 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Define (2/4): ");
+			changeSubStepHeader("Tool for Definition");
+			changeTimeLimitHeader("3:00");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('define-tool');
 			dispTool("block");
 
 			currStep='d_fillin1';
 		break;
 		case 'd_fillin1':
-			title = "Identify The Problem";
-			text = 	"What is the problem statement that you came up with? " +
-					"Try to make it short, sweet, and sexy. Then fill it in below: ";
+			title = "Identify";
+			text = 	"Identify your partner's problem. Keep it short and sweet. Then fill it in below:";
 			pic = "img/define/identify/1.png";
 			buttonText = "Submit";
 			ez.show("define_form");
@@ -394,6 +499,10 @@ function changeInstr(){
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
+			changeStepHeader("Define (3/4): ");
+			changeSubStepHeader("Fill in Problem");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
 			dispStep("block");
@@ -415,10 +524,13 @@ function changeInstr(){
 			changePic(pic);
 			changeButtonText(buttonText);
 
-			define_statement.textContent = client_name + " needs a way to " + client_problem + " because " + client_reason;
+      var define_statement_text = client_name + " needs a way to " + client_problem + " because " + client_reason;
+			define_statement.textContent = define_statement_text;
 			define_statement.style.fontSize = "7.5vw";
 			define_statement.style.textAlign = "center";
 			document.getElementById("step_text").appendChild(define_statement);
+      var d = getDateFormat();
+      file.createFile('DesignThinking/' + project_name + '/' + d + 'define' + '.txt',define_statement_text);
 
 			hideButtons();
 			dispStep("block");
@@ -429,11 +541,18 @@ function changeInstr(){
 			title = "Define Done";
 			text = 	"You have now defined the problem! Only two more steps to go!";
 			pic = "img/define.png";
+			buttonText = "Next Step: Ideate";
+			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Define (4/4): ");
+			changeSubStepHeader("Step Complete ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "next_step_button_div");
 			dispStep("block");
 
 			currStep='i_start';
@@ -447,13 +566,20 @@ function changeInstr(){
 			title = "3. Ideate";
 			text = 	"Now that you have defined the problem, it's time to come up with some solutions! ";
 			pic = "img/ideate.png";
-			buttonText = "Start";
+			buttonText = "Start!";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
+			//changeStepHeaderWheel(scc3, 'img/main/color-wheel/step3.png');
+			changeStepHeaderWheel(scc3, 'img/main/wheel/step3.png');
+			changeStepHeader("Ideate (1/5): ");
+			changeSubStepHeader("Introduction ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "page_content_button_div");
 			dispStep("block");
 
 			currStep='i_tool1';
@@ -466,14 +592,21 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Ideate (2/5): ");
+			changeSubStepHeader("Discover Solutions ");
+			changeTimeLimitHeader("5:00");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('ideate-tool');			
+			
 			dispTool("block");
 
 			currStep='i_feedback';
 		break;
 		case 'i_feedback':
-			title = "Obtain Solutions Feedback";
+			title = "Feedback";
 			text = 	"Now that you've come up with a few solutions, it's time to get some feedback from " +
 					"your user. Grab a pen and paper to take notes on how they feel about your solutions. " +
 					"For the user: try to give some constructive criticisms! " +
@@ -482,6 +615,12 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Ideate (3/5): ");
+			changeSubStepHeader("Solutions Feedback ");
+			changeTimeLimitHeader("4:00");
+			toggleTimerOn();
+
+			ez.hide("step_pic_div");
 			ez.show("timer");
 
 			hideButtons();
@@ -498,6 +637,11 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Ideate (4/5): ");
+			changeSubStepHeader("Revise Solution ");
+			changeTimeLimitHeader("3:00");
+			toggleTimerOn();
+			ez.hide("step_pic_div");
 			ez.show("timer");
 
 			hideButtons();
@@ -508,11 +652,18 @@ function changeInstr(){
 			title = "Ideate Done";
 			text = 	"You have now come up with a great solution! Let's see what's next...";
 			pic = "img/ideate.png";
+			buttonText = "Next Step: Prototype";
+			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Ideate (5/5): ");
+			changeSubStepHeader("Step Complete ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "next_step_button_div");
 			dispStep("block");
 
 			currStep='p_start';
@@ -526,13 +677,20 @@ function changeInstr(){
 			title = "4. Prototype";
 			text = 	"The only way to do it is to do it! ";
 			pic = "img/prototype.png";
-			buttonText = "Start";
+			buttonText = "Start!";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
+			//changeStepHeaderWheel(scc4, 'img/main/color-wheel/step4.png');
+			changeStepHeaderWheel(scc4, 'img/main/wheel/step4.png');
+			changeStepHeader("Prototype (1/3): ");
+			changeSubStepHeader("Introduction ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "page_content_button_div");
 			dispStep("block");
 
 			currStep='p_tool1';
@@ -544,8 +702,14 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Prototype (2/3): ");
+			changeSubStepHeader("Time to Build ");
+			changeTimeLimitHeader("10:00");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('prototype-tool');			
 			dispTool("block");
 
 			currStep='p_complete';
@@ -554,11 +718,18 @@ function changeInstr(){
 			title = "Prototype Done";
 			text = 	"Congrats on building your prototype! Only one step left, so let's move on!";
 			pic = "img/prototype/build-animation/1.png";
+			buttonText = "Next Step: Test";
+			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Prototype (3/3): ");
+			changeSubStepHeader("Step Complete ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "next_step_button_div");
 			dispStep("block");
 
 			currStep='t_start';
@@ -574,11 +745,20 @@ function changeInstr(){
 					"Allow them to test out your product. " +
 					"Be sure to provide them with your vision if you couldn't fully build it. ";
 			pic = "img/test.png";
+			buttonText = "Start!";
+			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			//changeStepHeaderWheel(scc5, 'img/main/main-wheel/step5.png');
+			changeStepHeaderWheel(scc5, 'img/main/wheel/step5.png');
+			changeStepHeader("Test (1/3): ");
+			changeSubStepHeader("Introduction ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
+			changeClass("b_step_instr", "page_content_button_div");
 			dispStep("block");
 
 			currStep='t_tool1';
@@ -590,8 +770,14 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Test (2/3): ");
+			changeSubStepHeader("User Feedback ");
+			changeTimeLimitHeader("4:00");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('test-tool');
 			dispTool("block");
 
 			currStep='t_complete';
@@ -603,6 +789,10 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeStepHeader("Test (3/3): ");
+			changeSubStepHeader("Step Complete ");
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
 			dispStep("block");
@@ -610,7 +800,7 @@ function changeInstr(){
 			currStep='end';
 		break;
 		case 'end':
-			p_complete = true;
+			t_complete = true;
 
 			title = "Congratulations!";
 			text = 	"Hope you came up with some great solutions! "+
@@ -665,6 +855,26 @@ function startVoiceRec(){
 	recordAudio();
 }
 
+// after clicking on the vid record button on vid/voice page
+function showVidRec(){
+  ez.hide('step_instr');
+  ez.hide('step_pic');
+  ez.show("vid_rec");
+  hideButtons();
+  dispQuest2("block");
+}
+// after clicking on start voice record button
+function startVidRec(){
+	//recording_voice = true;
+	allow_vid_rec = false;
+	ez.get_ele("start_vid_rec").style.backgroundColor = "gray";
+
+	// after time is up, go to next instruction
+	hideButtons();
+	captureVideo();
+	dispTimeUp("block");
+}
+
 // after clicking on the toolbox button from instruction page
 function showToolbox(){
 	ez.hide("step_instr");
@@ -683,6 +893,8 @@ function showPhotoCapture(){
 	ez.show("pic_page");
 
 	hideButtons();
+	changeTimeLimitHeader(" ");
+	toggleTimerOff();
 	dispTakePic("block");
 	// change to instructions page
 	dispPicNextStep("block");
@@ -693,12 +905,10 @@ function startTimer(){
 	timer_on = true;
 	allow_timer = false;
 	ez.get_ele("start_timer").style.backgroundColor = "gray";
-	ez.get_ele("start_timer_word").innerHTML = "<h3>0</h3>";
-
-	var time_limit = 8;	// sec
+	ez.get_ele("start_timer_word").innerHTML = "<h3>" + record_time_limit + " secs</h3>";
 	// after time is up
 	hideButtons();
-	startTimerCount(time_limit);
+	startTimerCount(record_time_limit);
 }
 
 // shows explanation of the application

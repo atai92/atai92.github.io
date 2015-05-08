@@ -3,15 +3,15 @@ function startTimerCount(timeLimit){
     var recInterval = setInterval(function() {
 		recTime = recTime + 1;
 		picAnimationDino1(recTime, "timer_pic");
-		setTimerPosition(recTime + " sec");
-		
+		setTimerPosition("<h3>" + (record_time_limit - recTime) + " secs</h3>");
+
         if (recTime >= timeLimit) {
                 clearInterval(recInterval);
 				onStopTimer();
         }
 
-    }, 1000);		
-	
+    }, 1000);
+
 }
 
 
