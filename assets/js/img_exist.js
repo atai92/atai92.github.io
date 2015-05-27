@@ -1,20 +1,40 @@
 var img =[];
-function imageExists(image_url){
 
-    var http = new XMLHttpRequest();
+function testImage(url, callback, timeout) {
+    timeout = timeout || 5000;
+    var timedOut = false, timer;
+    var img = new Image();
+    img.onerror = img.onabort = function() {
+        if (!timedOut) {
+            clearTimeout(timer);
+            callback(url, "error");
+        }
+    };
+    img.onload = function() {
+        if (!timedOut) {
+            clearTimeout(timer);
+            callback(url, "success");
+        }
+    };
+    img.src = url;
+    timer = setTimeout(function() {
+        timedOut = true;
+        callback(url, "timeout");
+    }, timeout);
+}
 
-    http.open('HEAD', image_url, false);
-    http.send();
-
-    return http.status != 404;
+function appendImg(url, result) {
+  if (result == "success") {
+    var body = document.getElementById("bdy");
+    var immortal_img = document.createElement("img");
+    immortal_img.src = url;
+    body.appendChild(immortal_img);
+  }
 }
 
 function showImmortals() {
-  var body = document.getElementById("bdy");
   for (var i = 0; i < img.length; i++) {
-    var immortal_img = document.createElement("img");
-    immortal_img.src = img[i];
-    body.appendChild(immortal_img);
+    testImage(img[i], appendImg);
   }
 }
 
@@ -30,7 +50,9 @@ img = [
   "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/beastmaster.png",
   "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/tidehunter.png",
   "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/dragon_knight.png",
+  "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/dragonknight.png",
   "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/wraith_king.png",
+  "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/wraithking.png",
   "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/clockwerk.png",
   "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/lifestealer.png",
   "http://cdn.dota2.com/apps/dota2/images/international2015/compendium/3d_hero_images/omniknight.png",
