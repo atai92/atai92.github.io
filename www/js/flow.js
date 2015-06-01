@@ -1,6 +1,5 @@
 ez.init();
 
-
 ez.c('new_project', function(event) {
   ez.show('create_project');
 });
@@ -16,14 +15,14 @@ ez.c('overlay_start', function(event) {
   project_path = 'DesignThinking/' + project_name;
   ez.hide('startup');
   currStep = 'e_start';
-  currStepNum = 1;
+  nextStep();
   stepName = 'empathy';
   counterColorStep(currStepNum);
   		toolbox.populate_tools();
 		hideAllTools();
   changeInstr();
   ez.hide('create_project');
-  ez.show('top_bar');
+  ez.show('topbar');
   ez.show('step_one_page');
   ez.show('step_instr');
 ez.show('step-bar-container');
@@ -155,7 +154,7 @@ function hideButtons(){
 
 
 // function to easily show/hide the main buttons
-function dispStep(nextStep){
+function dispStepButton(nextStep){
 	ez.get_ele("b_step_instr").style.display = nextStep;
 }
 function dispRec(rec){
@@ -201,16 +200,7 @@ function dispEnd(allDone){
 
 
 // step headers
-function changeStepHeaderWheel(myColor, myPic){
-	ez.get_ele("step_name_bar").style.color = myColor;
-	ez.get_ele("step_color_wheel").src = myPic;
-}
-function changeStepHeader(myTitle){
-	ez.get_ele("step_name_bar").innerHTML = myTitle;
-}
-function changeSubStepHeader(myTitle){
-	ez.get_ele("step_subname_bar").innerHTML = myTitle;
-}
+
 function changeTimeLimitHeader(myTitle){
 	ez.get_ele("step_time_limit").textContent = myTitle;
 }
@@ -237,8 +227,12 @@ function changePic(myPic){
 	ez.get_ele("step_pic").src = myPic;
 }
 
+function changePopupText(text) {
+  ez.get_ele("bubble-text").innerHTML = text;
+}
+
 // click buttons for instruction page
-ez.c("b_step_instr", function(event){
+ez.c("next-button", function(event){
 	changeInstr();
 });
 ez.c("b_step_vid_voice_rec", function(event){
@@ -317,7 +311,7 @@ ez.c("b_timer_done", function(event){
 	ez.hide("timer");
 	ez.show("step_pic_div");
 	ez.get_ele("timer_pic").src = "img/ideate/timer/1.png";
-	
+
 	changeTimeLimitHeader(" ");
 	toggleTimerOff();
 
@@ -337,68 +331,51 @@ function changeInstr(){
 
 	switch(currStep){
 		case 'e_start':
+      ez.show("bubble-overlay");
 			stepName = 'empathy';
 
-			title = "1. Empathy";
-			text = 	"Empathy is the ability to understand and share the feelings of another. " +
-				"We must first come to understand our user in order to properly identify their needs. " +
-				"<br><br>Before we start, remember to be as positive and as open-minded as you can be! Anything is possible. There is no win, no fail, just make. Let's get started and have some fun!";
-			pic = "img/empathy/main.png";
-			buttonText = "Start!";
-			changeTitle(title);
-			changeText(text);
-			changePic(pic);
-			changeButtonText(buttonText);
-			//changeStepHeaderWheel(scc1, 'img/color-wheel/step1.png');
-			changeStepHeaderWheel(scc1, 'img/main/wheel/step1.png');
-			changeStepHeader("Empathy (1/4): ");
-			changeSubStepHeader("Introduction ");
-			changeTimeLimitHeader(" ");
+      ez.show("next-button");
+      ez.show("next-button-bottomflap");
 			toggleTimerOff();
 
-			hideButtons();
-			dispStep("block");
-
-			currStep='e_int1';
-		break;
-		case 'e_int1':
+			dispStepButton("block");
 			title = "Interview";
-			text = 	"In this initial step, you will get to understand the user by asking open-ended questions (what/why/why not)." +
-				"Take a look at the example questions if you are unsure what type of open-ended questions to ask. You want to get your partner to tell you as many stories as they can within the time limit!";
+			text = 	"In this initial step, you will get to understand the user by asking <p id='oequestions' style='display:inline-block;position:static;color:#35b7e5;font-weight:bold;line-size:5vw;margin:0;padding:0;'><strong>open-ended questions</strong></p>.";
 			pic = "img/empathy/interview/1.png";
 			changeTitle(title);
 			changeText(text);
+      ez.c('oequestions',function() {
+        //This should popup the dinosaur with the chat bubble
+        //explaining what "open-ended questions" are.
+        var popuptext = "An <strong>open-ended question</strong> doesn't have just one answer, like a <b>Yes</b> or a <b>No</b>.<br><br><strong>Open-ended questions</strong> start with words like <b>What? Why?</b> or <b>Why not?</b>";
+        changePopupText(popuptext);
+        ez.show("bubble-overlay");
+      });
 			changePic(pic);
-			changeStepHeader("Empathy (2/4): ");
-			changeSubStepHeader("Interview #1 ");
-			changeTimeLimitHeader("5:00 ");
+			changeTimeLimitHeader("5:00");
 			toggleTimerOn();
 
 			hideButtons();
 			dispQuest("block");
-			dispRec("block");
 
 
 			currStep='e_int2';
 		break;
 		case 'e_int2':
-			title = "Deeper Interview";
-			text = "Did you get all the info you needed? It's difficult to achieve " +
-					"in less than 5 minutes. So, it's time to dig deeper! Try to expand on the experiences your partner shared with you. A good place to start is with stories that your partner did not enjoy too much because that means there is something wrong for you to improve!";
+      ez.hide('next-button');
+			title = "Interview";
+			text = "<strong><font size='4vw'>GOAL: </font></strong> Get your partner to tell you as many stories as they can within the time limit!";
 			pic = "img/empathy/interview/2.png";
 			changeTitle(title);
 			changeText(text);
-			changePic(pic);
-			changeStepHeader("Empathy (3/4): ");
-			changeSubStepHeader("Interview #2 ");
-			changeTimeLimitHeader("5:00 ");
+			changeTimeLimitHeader("5:00");
 			toggleTimerOn();
 
 			hideButtons();
 			dispQuest("block");
 			dispRec("block");
 
-			currStep='e_tool1';
+			currStep='d_start';
 		break;
 		case 'e_tool1':
 			title = "";
@@ -409,8 +386,6 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Empathy (3/4): ");
-			changeSubStepHeader("Empathy Tool ");
 			changeTimeLimitHeader("3:00 ");
 			toggleTimerOn();
 
@@ -419,56 +394,53 @@ function changeInstr(){
 			showClass('empathy-tool');
 			dispTool("block");
 
-			currStep='e_complete';
+			currStep='d_start';
 		break;
 		case 'e_complete':
 			title = "Empathy Done";
 			text = 	"You have gotten to understand your user. Now on to the next step!";
 			pic = "img/empathy.png";
-			buttonText = "Next Step: Define";
-			changeButtonText(buttonText);
+
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Empathy (4/4): ");
-			changeSubStepHeader("Step Complete ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
 			changeClass("b_step_instr", "next_step_button_div");
-			dispStep("block");
 
 			currStep='d_start';
 		break;
 		case 'd_start':
-			currStepNum = 2;
+      ez.show("next-button");
+      ez.show("bubble-overlay");
+      var popuptext = "<strong>Well done!</strong> <br><br>You've finished the first step and have gotten to know your partner better. Let's continue our journey and move on to the <strong>define</strong> stage!"
+      changePopupText(popuptext);
+			nextStep();
 			stepName = 'define';
 			counterColorStep(currStepNum);
 			e_complete = true;
 
-			title = "2. Define";
-			text = 	"It's time to define the problem based on how you understood your partner. " +
-					"Try to make the correct problem clearer and more focused by checking with your partner.";
+			title = "Define";
+			text = 	"In this second step you will use what you've learned in the previous step to <strong>define a problem</strong>. You should work closely with your partner in this stage to make sure you define the correct problem.";
 			pic = "img/define.png";
-			buttonText = "Start!";
-			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			//changeStepHeaderWheel(scc2, 'img/color-wheel/step2.png');
-			changeStepHeaderWheel(scc2, 'img/main/wheel/step2.png');
-			changeStepHeader("Define (1/4): ");
-			changeSubStepHeader("Introduction ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
-			changeClass("b_step_instr", "page_content_button_div");
-			dispStep("block");
 
-			currStep='d_tool1';
+			currStep='d_goal';
 		break;
+    case 'd_goal':
+      text = "<strong><font size='4vw'>GOAL: </font></strong> Create a statement that clearly states your partner's problem. Make sure to get to the root of the problem and not just scratch the surface.";
+      changeText(text);
+      hideButtons();
+      currStep='d_fillin1';
+      break;
 		case 'd_tool1':
 			title = "Identify The Problem";
 			text = 	"In this step, you will be taking all of the information you gathered about your partner " +
@@ -477,8 +449,6 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Define (2/4): ");
-			changeSubStepHeader("Tool for Definition");
 			changeTimeLimitHeader("3:00");
 			toggleTimerOn();
 
@@ -499,13 +469,11 @@ function changeInstr(){
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
-			changeStepHeader("Define (3/4): ");
-			changeSubStepHeader("Fill in Problem");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			dispStepButton("block");
 
 			currStep='d_fillin2';
 		break;
@@ -517,12 +485,10 @@ function changeInstr(){
 			title = "Problem Identified";
 			text = 	"Here's what you came up with: ";
 			pic = "img/define/identify-animation/1.png";
-			buttonText = "Next Step!";
 
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeButtonText(buttonText);
 
       var define_statement_text = client_name + " needs a way to " + client_problem + " because " + client_reason;
 			define_statement.textContent = define_statement_text;
@@ -533,116 +499,85 @@ function changeInstr(){
       file.createFile('DesignThinking/' + project_name + '/' + d + 'define' + '.txt',define_statement_text);
 
 			hideButtons();
-			dispStep("block");
 
-			currStep='d_complete';
+			currStep='i_start';
 		break;
 		case 'd_complete':
 			title = "Define Done";
 			text = 	"You have now defined the problem! Only two more steps to go!";
 			pic = "img/define.png";
-			buttonText = "Next Step: Ideate";
-			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Define (4/4): ");
-			changeSubStepHeader("Step Complete ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
 			changeClass("b_step_instr", "next_step_button_div");
-			dispStep("block");
 
 			currStep='i_start';
 		break;
 		case 'i_start':
-			currStepNum = 3;
+			nextStep();
+      ez.show("bubble-overlay");
+      var popuptext = "<strong>Nice!</strong><br><br>Only three steps left! Our next destination is the <strong>ideate</strong> step.<br><br>Come on, let's go!";
+      changePopupText(popuptext);
 			stepName = 'ideate';
 			counterColorStep(currStepNum);
 			d_complete = true;
 
-			title = "3. Ideate";
+			title = "Ideate";
 			text = 	"Now that you have defined the problem, it's time to come up with some solutions! ";
 			pic = "img/ideate.png";
-			buttonText = "Start!";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeButtonText(buttonText);
-			//changeStepHeaderWheel(scc3, 'img/main/color-wheel/step3.png');
-			changeStepHeaderWheel(scc3, 'img/main/wheel/step3.png');
-			changeStepHeader("Ideate (1/5): ");
-			changeSubStepHeader("Introduction ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
-			changeClass("b_step_instr", "page_content_button_div");
-			dispStep("block");
 
 			currStep='i_tool1';
 		break;
 		case 'i_tool1':
-			title = "Discover Solutions";
-			text = 	"In this step, you will brainstorm as many solutions as you can for the problem within the time limit. There are no " +
-					"wrong answers, so be as creative and as crazy as you can be! If you need some help try looking at the ideate tools.";
+			title = "Solutions";
+			text = 	"<strong><font size='4vw'>GOAL: </font></strong>Come up with as many solutions as possible to the problem you defined in the define step!";
 			pic = "img/ideate/sketch-animation/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Ideate (2/5): ");
-			changeSubStepHeader("Discover Solutions ");
 			changeTimeLimitHeader("5:00");
-			toggleTimerOn();
+      toggleTimerOff();
 
 			hideButtons();
 			hideAllTools();
-			showClass('ideate-tool');			
-			
-			dispTool("block");
+			showClass('ideate-tool');
 
 			currStep='i_feedback';
 		break;
 		case 'i_feedback':
 			title = "Feedback";
-			text = 	"Now that you've come up with a few solutions, it's time to get some feedback from " +
-					"your user. Grab a pen and paper to take notes on how they feel about your solutions. " +
-					"For the user: try to give some constructive criticisms! " +
-					"Start the timer when you're ready!";
+			text = 	"<strong><font size='4vw'>GOAL: </font></strong>Show your partner your solutions and see which solutions work. Make sure to know why your solutions don't work so you can improve them!";
 			pic = "img/ideate/feedback/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Ideate (3/5): ");
-			changeSubStepHeader("Solutions Feedback ");
 			changeTimeLimitHeader("4:00");
-			toggleTimerOn();
-
-			ez.hide("step_pic_div");
-			ez.show("timer");
+      toggleTimerOff();
 
 			hideButtons();
 
 			currStep='i_revise';
 		break;
 		case 'i_revise':
-			title = "Revise Solutions";
-			text = 	"Now that you've gotten user feedback, it's time to revise your solution. " +
-					"Pick one of your solution and use the feedback to enhance it " +
-					"or combine it with other solutions.  " +
-					"Grab a pen and paper and sketch it out. Start the timer when you're ready!";
+			title = "Revise";
+			text = 	"No one can get it right the first time!<br><br><strong><font size='4vw'>GOAL: </font></strong>Use the feedback from before to come up with a more <strong>awesome</strong> idea!";
 			pic = "img/ideate/feedback-animation/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Ideate (4/5): ");
-			changeSubStepHeader("Revise Solution ");
 			changeTimeLimitHeader("3:00");
-			toggleTimerOn();
-			ez.hide("step_pic_div");
-			ez.show("timer");
+      toggleTimerOff();
 
 			hideButtons();
 
@@ -652,29 +587,24 @@ function changeInstr(){
 			title = "Ideate Done";
 			text = 	"You have now come up with a great solution! Let's see what's next...";
 			pic = "img/ideate.png";
-			buttonText = "Next Step: Prototype";
-			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Ideate (5/5): ");
-			changeSubStepHeader("Step Complete ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
 			changeClass("b_step_instr", "next_step_button_div");
-			dispStep("block");
 
 			currStep='p_start';
 		break;
 		case 'p_start':
-			currStepNum = 4;
+			nextStep();
 			stepName = 'prototype';
 			counterColorStep(currStepNum);
 			i_complete = true;
 
-			title = "4. Prototype";
+			title = "Prototype";
 			text = 	"The only way to do it is to do it! ";
 			pic = "img/prototype.png";
 			buttonText = "Start!";
@@ -682,16 +612,12 @@ function changeInstr(){
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
-			//changeStepHeaderWheel(scc4, 'img/main/color-wheel/step4.png');
-			changeStepHeaderWheel(scc4, 'img/main/wheel/step4.png');
-			changeStepHeader("Prototype (1/3): ");
-			changeSubStepHeader("Introduction ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
 			changeClass("b_step_instr", "page_content_button_div");
-			dispStep("block");
+			dispStepButton("block");
 
 			currStep='p_tool1';
 		break;
@@ -702,14 +628,12 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Prototype (2/3): ");
-			changeSubStepHeader("Time to Build ");
 			changeTimeLimitHeader("10:00");
 			toggleTimerOn();
 
 			hideButtons();
 			hideAllTools();
-			showClass('prototype-tool');			
+			showClass('prototype-tool');
 			dispTool("block");
 
 			currStep='p_complete';
@@ -718,29 +642,24 @@ function changeInstr(){
 			title = "Prototype Done";
 			text = 	"Congrats on building your prototype! Only one step left, so let's move on!";
 			pic = "img/prototype/build-animation/1.png";
-			buttonText = "Next Step: Test";
-			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Prototype (3/3): ");
-			changeSubStepHeader("Step Complete ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
 			changeClass("b_step_instr", "next_step_button_div");
-			dispStep("block");
 
 			currStep='t_start';
 		break;
 		case 't_start':
-			currStepNum = 5;
+			nextStep();
 			stepName = 'test';
 			counterColorStep(currStepNum);
 			p_complete = true;
 
-			title = "5. Test";
+			title = "Test";
 			text = 	"Give your user the full experience! " +
 					"Allow them to test out your product. " +
 					"Be sure to provide them with your vision if you couldn't fully build it. ";
@@ -750,16 +669,12 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			//changeStepHeaderWheel(scc5, 'img/main/main-wheel/step5.png');
-			changeStepHeaderWheel(scc5, 'img/main/wheel/step5.png');
-			changeStepHeader("Test (1/3): ");
-			changeSubStepHeader("Introduction ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
 			changeClass("b_step_instr", "page_content_button_div");
-			dispStep("block");
+			dispStepButton("block");
 
 			currStep='t_tool1';
 		break;
@@ -770,8 +685,6 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Test (2/3): ");
-			changeSubStepHeader("User Feedback ");
 			changeTimeLimitHeader("4:00");
 			toggleTimerOn();
 
@@ -789,13 +702,10 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeStepHeader("Test (3/3): ");
-			changeSubStepHeader("Step Complete ");
 			changeTimeLimitHeader(" ");
 			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
 
 			currStep='end';
 		break;
@@ -809,16 +719,16 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-
+      ez.hide("topbar");
+      nextStep();
+      ez.hide("next-button");
 			hideButtons();
 			dispEnd("block");
 
 			currStep='start';
 		break;
-
-
-
 		default:
+      break;
 	}
 
 }
@@ -826,7 +736,7 @@ function changeInstr(){
 // after clicking on the vid/voice record button from instruction page
 function showRec(){
 	ez.show("step_instr");
-  text = "You can choose to use either video recording or voice recording to record your interview process.";
+  text = "You can choose to use either <strong>video recording</strong> or <strong>voice recording</strong> to record your interview process.";
   changeText(text);
 	ez.show("vid_voice_rec");
 
@@ -927,6 +837,7 @@ function restartHome(){
 	ez.hide("step_one_page");
 	ez.hide("step_instr");
   ez.hide('top_bar');
+  ez.hide('header_bar_TEST');
 	ez.show("startup");
   ez.get_ele('circle-one').style.backgroundColor = '#848484';
   ez.get_ele('bar-one').style.borderColor = 'white';

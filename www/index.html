@@ -18,35 +18,87 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/newproject.css">
     <link rel="stylesheet" type="text/css" href="css/openproject.css">
     <link rel="stylesheet" type="text/css" href="css/summary.css">
     <link rel="stylesheet" type="text/css" href="css/stepsbar.css">
     <link rel="stylesheet" type="text/css" href="css/whatis.css">
-	<link rel="stylesheet" type="text/css" href="css/toolbox.css">
-        <title>Design Thinking</title>
-    </head>
-    <body>
-        <!--
-            "top_bar" is where our header bar is.
-        -->
+    <link rel="stylesheet" type="text/css" href="css/toolbox.css">
+    <link rel="stylesheet" type="text/css" href="css/progressbar.css">
+    <link rel="stylesheet" type="text/css" href="css/topbar.css">
+    <link rel="stylesheet" type="text/css" href="css/nextbutton.css">
+    <link rel="stylesheet" type="text/css" href="css/chatbubble.css">
+    <title>Design Thinking</title>
+  </head>
+  <body>
+  <!--
+    "top_bar" is where our header bar is.
 
-        <div id="top_bar" class="top_bar_header_div">
-            <h1 style="text-align:left; color:white; font-weight:normal; font-size:3em; display:inline-block;"><img id="menu-icon" src="img/main/menu.png" />DinoThink</h1>
+  -->
+    <div id="top_bar" class="top_bar_header_div">
+        <h1 style="text-align:left; color:white; font-weight:normal; font-size:3em; display:inline-block;"><img id="menu-icon" src="img/main/menu.png" />DinoThink</h1>
+  			<img id="imgProfile" style="display:none" />
+  			<div id="toolbox_content" style="display:none"></div>
+    </div>
 
+    <div id="bubble-overlay">
+      <div class="bubble">
+         <div id="bubble-exit">X</div>
+         <div id="bubble-text">
+           Welcome to <strong>Dino Think!</strong> <br><br> There are <strong>5</strong> steps total. Each step is <strong>timed</strong> and the time for each step will be shown at the bottom. If you are unsure what <strong>colored</strong> terms are then try clicking them for an explanation!<br><br>Now we're ready so let's start our journey with <strong>Empathy</strong> first!
+         </div>
+      </div>
+      <img src="https://www.dropbox.com/s/nkk6xxecewol76h/character.png?raw=1" />
+    </div>
 
-
-			<img id="imgProfile" style="display:none" />
-			<div id="toolbox_content" style="display:none"></div>
+      <div id="topbar">
+        <div id="headerbar">
+          <img src="img/v4/main/menu-icon.png" style="position:static; width:6vw;float:left;margin-top:2vw;,margin-left:2vw;"/>
+          <div class="headerbarcontent" id="header_bar_EMPATHY">
+            <img id="header_bar_image_icon" src="img\v4\empathy\icon.png"/>
+            EMPATHY
+          </div>
+          <div class="headerbarcontent" id="header_bar_DEFINE">
+            <img id="header_bar_image_icon" src="img\v4\define\icon.png"/>
+            DEFINE
+          </div>
+          <div class="headerbarcontent" id="header_bar_IDEATE">
+            <img id="header_bar_image_icon" src="img\v4\ideate\icon.png"/>
+            IDEATE
+          </div>
+          <div class="headerbarcontent" id="header_bar_PROTOTYPE">
+            <img id="header_bar_image_icon" src="img\v4\prototype\icon.png"/>
+            PROTOTYPE
+          </div>
+          <div class="headerbarcontent" id="header_bar_TEST">
+            <img id="header_bar_image_icon" src="img\v4\test\icon.png"/>
+            TEST
+          </div>
         </div>
+        <div id="progressbar">
+          <ul>
+            <li id="progressbar-1">1</li>
+            <li id="progressbar-2">2</li>
+            <li id="progressbar-3">3</li>
+            <li id="progressbar-4">4</li>
+            <li id="progressbar-5">5</li>
+          </ul>
+        </div>
+      </div>
+
+    <div id="next-button">
+      <div id="next-arrow-box"></div>
+      <div id="next-arrow-triangle"></div>
+      <div id="next-button-bottomflap"></div>
+    </div>
 
 		<!-- Startup Page -->
     <div id="startup">
@@ -85,33 +137,24 @@
 		</div>
 
 		  <!-- Project Selection -->
-          <div id="project_selection">
-            <div id="open_projectdiv">
-              <div style="display:inline-block;line-height:45px"><img style="width:26px; height:auto; margin: 7px 10px 0 10px" src='img/open-folder-icon.png'/>Open Project</div>
-              <div id="open_project_exit">X</div>
-            </div>
-            <div id="projects_container">
-            </div>
-            <div id="op_OK">START</div>
-          </div>
+    <div id="project_selection">
+      <div id="open_projectdiv">
+        <div style="display:inline-block;line-height:45px"><img style="width:26px; height:auto; margin: 7px 10px 0 10px" src='img/open-folder-icon.png'/>Open Project</div>
+        <div id="open_project_exit">X</div>
+      </div>
+      <div id="projects_container">
+      </div>
+      <div id="op_OK">START</div>
+    </div>
 
-	<div id="step_one_page">
-
-		<div id="step_header" style="margin-top: 5px">
-			<!--<img id = "step_color_wheel" src = "img/color-wheel/step0" />-->
-			<img id = "step_color_wheel" src = "img/main/wheel/step0" />
-			<h3 id="step_name_bar"> CurrStep </h3>
-			<h3 id="step_subname_bar"> CurrStep </h3>
-		</div>
-
-
+    <div id="step_one_page">
 		<!-- Instructions -->
         <div id="step_instr" class="main_content_div">
 			<div id="timer" class="main_content_div">
 				<div class = "stepPic"><img src="img/ideate/timer/1.png" id = "timer_pic" /></div>
 				<div id="start_timer" class="button_record"></div>
 				<div id = "start_timer_word" style="text-align:center"><h3>Start Timer</h3></div>
-				<div id="b_timer_done" class="page_content_button_div"><h2>Times Up</h2></div>
+				<div id="b_timer_done" class="page_content_button_div"><h2>Time's Up</h2></div>
 			</div>
 
 			<div id="step_top">
@@ -192,10 +235,10 @@
 
 			<div id="b_step_time_up" class="page_content_button_div" style="backgound-color:red"><h2>Time's Up!</h2></div>
 			<div style="height:30px; width:80%; margin:0 auto">
-				<div id="b_step_vid_rec" class="main_content_button_div" style="margin-right:10%">
+				<div id="b_step_vid_rec" class="main_content_button_div" style="margin-right:10%;height:81px;margin-bottom:40px;margin-top:-10px;">
 				  <img style="height:auto; width:auto;max-height:80px" src="img/main/video.png" />
 				</div>
-				<div id="b_step_voice_rec" class="main_content_button_div">
+				<div id="b_step_voice_rec" class="main_content_button_div" style="height:81px;margin-top:-10px;">
 				  <img style="height:auto; width:auto;max-height:80px" src="img/main/voice.png" />
 				</div>
 			</div>
@@ -260,11 +303,8 @@
 		</div>
 
 		<div id="step-bar-container" style="margin-left:auto">
-			<div>
-				<!--<img id="time-icon" src="img/hourglass.png" />-->
 				<img id="time-icon" src="img/main/timer-inactive.png" />
 				<h1 id="step_time_limit"> CurrTime </h1>
-			</div>
 		</div>
 
 
@@ -289,7 +329,7 @@
             <img id="summary-img"/>
             <div id = "summary-p"></div>
             <div id='transitionScreen'>
-              <img id='transitionImg' src=''\>
+              <img id='transitionImg' src='img\v4\test\icon.png'\>
               <h2 id='transitionName'></h2>
             </div>
           </div>
@@ -302,20 +342,22 @@
           <div id='whatis_button_close'>CLOSE</div>
         </div>
 
-        <script type="text/javascript" src="js/globals.js"></script>
-        <script type="text/javascript" src="js/ez.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/animate.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/file.js"></script>
-        <script type="text/javascript" src="js/flow.js"></script>
-        <script type="text/javascript" src="js/swipe.js"></script>
-        <script type="text/javascript" src="js/summary.js"></script>
+    <script type="text/javascript" src="js/globals.js"></script>
+    <script type="text/javascript" src="js/ez.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/animate.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/file.js"></script>
+    <script type="text/javascript" src="js/flow.js"></script>
+    <script type="text/javascript" src="js/swipe.js"></script>
+    <script type="text/javascript" src="js/summary.js"></script>
 		<script type="text/javascript" src="js/photo_capture.js"></script>
 		<script type="text/javascript" src="js/voice_capture.js"></script>
 		<script type="text/javascript" src="js/video_capture.js"></script>
 		<script type="text/javascript" src="js/timer.js"></script>
 		<script type="text/javascript" src="js/toolbox.js"></script>
+    <script type="text/javascript" src="js/nextstep.js"></script>
+    <script type="text/javascript" src="js/chatbubble.js"></script>
 
     </body>
 </html>

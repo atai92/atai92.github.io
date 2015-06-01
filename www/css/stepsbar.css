@@ -1,9 +1,10 @@
 #step-bar-container {
   position: fixed;
-  bottom: 0%;
+  bottom: 2%;
   width: 80%;
   height: 8%;
   left: 5%;
+  line-height: 5em;
 }
 
 .circle {
@@ -42,8 +43,8 @@
 #step_name_bar{
 	font-family:'ralewaysemibold','HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 	text-transform:uppercase;
-	color:white; 
-	font-weight:bolder;  
+	color:white;
+	font-weight:bolder;
 	display: inline-block;
 	font-size: 6vw;
 }
@@ -52,25 +53,23 @@
 	font-family:'ralewaylight','HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 	color:#848484;
 	margin-left: 0.5em;
-	font-weight:bold; 
+	font-weight:bold;
 	display: inline-block;
 	font-size: 4vw;
 }
 
 #step_time_limit{
 	font-family:'ralewaysemibold','HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-	color:#848484;  
+  position:static;
+	color:#848484;
 	margin-left:2vw;
-	padding-bottom:5vw;
-	/*font-weight:bolder;*/
-	font-size:4em; 
+	font-size:4em;
 	display:inline-block;
 }
 
 #time-icon{
 	max-height: 1em;
-	margin-top:auto;
 	margin-bottom:auto;
-	font-size:4em; 
+	font-size:4em;
 	display:inline-block;
 }
