@@ -3,3 +3,12 @@ img {
   max-height: 400px;
   max-width: 350px;
 }
+
+h1 {
+  font-size: 4vw;
+  color: gray;
+}
+
+div {
+  border: 1px solid gray;
+}

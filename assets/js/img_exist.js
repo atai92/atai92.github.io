@@ -1,4 +1,8 @@
 var img =[];
+var existingimmortals = [
+  ["luna","sand_king","huskar","magnus","pugna","spirit_breaker","night_stalker"],
+  ["antimage","faceless_void","disruptor","sven","leshrac","tinker","shadow_fiend"]
+]
 
 function testImage(url, callback, timeout) {
     timeout = timeout || 5000;
@@ -26,9 +30,38 @@ function testImage(url, callback, timeout) {
 function appendImg(url, result) {
   if (result == "success") {
     var body = document.getElementById("bdy");
+    var appended = false;
+
+    var immortal1 = document.getElementById("immortalone");
+    var immortal2 = document.getElementById("immortaltwo");
+    var immortal3 = document.getElementById("immortalthree");
+    var special = document.getElementById("special");
+
     var immortal_img = document.createElement("img");
     immortal_img.src = url;
-    body.appendChild(immortal_img);
+
+    var str = url;
+
+    for (var i = 0; i < 7; i++) {
+      if (str.search(existingimmortals[0][i]) > -1) {
+        immortal1.appendChild(immortal_img);
+        appended = true;
+      }
+      else if (str.search(existingimmortals[1][i]) > -1) {
+        immortal2.appendChild(immortal_img);
+        appended = true;
+      }
+      if (!appended && str.search("enigma") < 0) {
+        immortal3.appendChild(immortal_img);
+        appended = true;
+      }
+      if (!appended && str.search("enigma") > 0) {
+        special.appendChild(immortal_img);
+        appended = true;
+      }
+    }
+
+    //body.appendChild(immortal_img);
   }
 }
 
