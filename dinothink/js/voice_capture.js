@@ -10,8 +10,8 @@
         mediaRec.startRecord();
 
 		if(reset){miscAnimation[5].stop();miscAnimation[0].display();}
-		miscAnimation[0].preload();
-		miscAnimation[0].display();
+		//miscAnimation[0].preload();
+		//miscAnimation[0].display();
 		miscAnimation[0].animate();
 
         // Stop recording after 10 sec
@@ -80,8 +80,8 @@ function onStopVoiceRec(){
 	recording_voice = false;
 	dispTimeUp("block");
 	reset = true;
-	miscAnimation[5].preload();
+	//miscAnimation[5].preload();
 	miscAnimation[0].stop();
-	miscAnimation[5].display();
-	miscAnimation[5].animate();
+	//miscAnimation[5].display();
+	//miscAnimation[5].animate();
 }

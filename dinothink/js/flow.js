@@ -777,6 +777,8 @@ function showRec(){
 }
 // after clicking on the voice record button on vid/voice page
 function showVoiceRec(){
+  miscAnimation[0].preload();
+  miscAnimation[0].display();
   ez.hide('step_instr');
   ez.hide('step_pic');
 	ez.show("voice_rec");

@@ -105,7 +105,7 @@
 }
 
 #questions_exit_button {
-  position: static;
+  /*position: static;*/
   height: 45px;
   width: 100px;
   margin: 0 auto;
@@ -117,4 +117,5 @@
   color: white;
   line-height: 45px;
   font-size: 15px;
+  margin-top:-1em;
 }

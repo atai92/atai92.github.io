@@ -7,6 +7,7 @@ var Animation = function(step, name, id, blink, numPics) {
 		id: this.id,
 		numPics: this.numPics, // Number of pictures in sequence
 		interval: null,
+		interval2: null,
 		//isAnimated: false;
 		getSrc: function(picNum) {
 			return "../www/img/" + step + "/" + name + "-animation/" + picNum + ".png";
@@ -30,10 +31,10 @@ var Animation = function(step, name, id, blink, numPics) {
 		animate: function() {
 			var self = this;
 			//isAnimated = true;
-
+			
 			if(blink) {
-				setInterval(function() { self.display(2); }, 1250);
-				setInterval(function() { self.display(1); }, 500);
+				inteval = setInterval(function() { self.display(2); }, 1250);
+				interval2 = setInterval(function() { self.display(1); }, 500);
 			} // For blink animations
 			else{
 				var self = this;
@@ -53,6 +54,9 @@ var Animation = function(step, name, id, blink, numPics) {
 		}, // Animate the sequence
 		stop: function() {
 			clearInterval(interval);
+			if(blink){
+				clearInterval(interval2);
+			}
 		} // Stop animation
 	}
 }
