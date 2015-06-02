@@ -35,6 +35,12 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         file.createDir("DesignThinking");
+		file.createDir("DesignThinking/Toolbox");
+		file.createDir("DesignThinking/Toolbox/txt");
+		file.createFile("DesignThinking/Toolbox/txt/toolbox_content.txt", original_toolbox_content);
+		toolbox.toolbox_files("DesignThinking/Toolbox/txt/toolbox_content.txt");
+
+		//file.summary_Txt("DesignThinking/Toolbox/txt/toolbox_content.txt");
 
         //Get folder names and display them onto the div with id "start_screen"
         document.getElementById("open_project").addEventListener("click", function(event) {
@@ -59,7 +65,7 @@ var app = {
 };
 
 
-//app.initialize();
+app.initialize();
 
 function clrForm() {ez.get_ele('project_name_text_form').value = '';}
 ez.c('project_name_text_form', clrForm);
@@ -106,7 +112,7 @@ function getDateFormat(){
 }
 
 function picAnimationDino1(recTime, Id){
-	if (recTime % 4 == 0){
+	/*if (recTime % 4 == 0){
 		ez.get_ele(Id).src = "img/clk1.png";
 	}
 	else if (recTime % 4 == 1){
@@ -117,5 +123,18 @@ function picAnimationDino1(recTime, Id){
 	}
 	else {
 	ez.get_ele(Id).src = "img/clk2.png";
+	}*/
+	
+	if (recTime % 4 == 0){
+		ez.get_ele(Id).src = "img/misc-animations/dance-animation/1.png";
+	}
+	else if (recTime % 4 == 1){
+		ez.get_ele(Id).src = "img/misc-animations/dance-animation/2.png";
+	}
+	else if (recTime % 4 == 2){
+		ez.get_ele(Id).src = "img/misc-animations/dance-animation/3.png";
+	}
+	else {
+	ez.get_ele(Id).src = "img/misc-animations/dance-animation/4.png";
 	}
 }

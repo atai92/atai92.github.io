@@ -5,7 +5,7 @@ function capturePhoto() {
     navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI, saveToPhotoAlbum: true });
 }
 
-function onPhotoDataSuccess(imageURI) { 
+function onPhotoDataSuccess(imageURI) {
         // Uncomment to view the base64 encoded image data
         // console.log(imageData);
 
@@ -24,23 +24,23 @@ function onPhotoDataSuccess(imageURI) {
 }
 
 // Called if something bad happens.
-// 
+//
 function onFail(message) {
     alert(message);
 }
 
-function movePic(file){ 
-    window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError); 
-} 
+function movePic(file){
+    window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError);
+}
 
 //Callback function when the file system uri has been resolved
-function resolveOnSuccess(entry){ 
+function resolveOnSuccess(entry){
     var d = getDateFormat();
     //new file name
-    var newFileName = stepName + d + ".jpg";
+    var newFileName = d + stepName + ".jpg";
     var myFolderApp = project_path;
 
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
     //The folder is created if doesn't exist
     fileSys.root.getDirectory( myFolderApp,
                     {create:true, exclusive: false},

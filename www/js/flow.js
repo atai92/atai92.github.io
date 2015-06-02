@@ -1,6 +1,5 @@
 ez.init();
 
-
 ez.c('new_project', function(event) {
   ez.show('create_project');
 });
@@ -12,16 +11,18 @@ ez.c('project_name_exit', function(event) {
 // click start for a new project
 ez.c('overlay_start', function(event) {
   project_name = ez.get_ele("project_name_form").elements[0].value;
-  //file.createDir('DesignThinking/' + project_name);
+  file.createDir('DesignThinking/' + project_name);
   project_path = 'DesignThinking/' + project_name;
   ez.hide('startup');
   currStep = 'e_start';
-  currStepNum = 1;
+  nextStep();
   stepName = 'empathy';
   counterColorStep(currStepNum);
+  		toolbox.populate_tools();
+		hideAllTools();
   changeInstr();
   ez.hide('create_project');
-  ez.show('top_bar');
+  ez.show('topbar');
   ez.show('step_one_page');
   ez.show('step_instr');
 ez.show('step-bar-container');
@@ -44,6 +45,32 @@ ez.c('op_OK', function(event) {
     }
   }
 });
+
+function hideClass(myClass){
+	var toHide = document.getElementsByClassName(myClass);
+    for (var v=0; v < toHide.length; v++) {
+        toHide[v].style.display = 'none';
+    }
+}
+
+function showClass(myClass){
+	var toShow = document.getElementsByClassName(myClass);
+    for (var v=0; v < toShow.length; v++) {
+        toShow[v].style.display = 'block';
+    }
+}
+
+function hideAllTools(){
+	hideClass('empathy-tool');
+	hideClass('define-tool');
+	hideClass('ideate-tool');
+	hideClass('prototype-tool');
+	hideClass('test-tool');
+}
+function changeClass(myElement, myClass){
+	ez.get_ele(myElement).className = myClass;
+}
+
 
 // change color of step counter
 function circleColor(one, two, three, four, five){
@@ -127,38 +154,38 @@ function hideButtons(){
 
 
 // function to easily show/hide the main buttons
-function dispStep(nextStep){
+function dispStepButton(nextStep){
 	ez.get_ele("b_step_instr").style.display = nextStep;
 }
 function dispRec(rec){
-	ez.get_ele("b_step_vid_voice_rec").style.display = rec;
+	ez.get_ele("b_step_vid_voice_rec").style.display = 'inline-block'; //rec;
 }
 function dispQuest(quest){
-	ez.get_ele("b_step_int_questions").style.display = quest;
+	ez.get_ele("b_step_int_questions").style.display = 'inline-block'; //quest;
 }
 function dispQuest2(quest2){
-	ez.get_ele("b_step_int_questions_2").style.display = quest2;
+	ez.get_ele("b_step_int_questions_2").style.display = 'inline-block'; //quest2;
 }
 function dispPic(pic){
-	ez.get_ele("b_step_take_pic").style.display = pic;
+	ez.get_ele("b_step_take_pic").style.display = 'inline-block'; //pic;
 }
 function dispTool(tool){
-	ez.get_ele("b_step_toolbox").style.display = tool;
+	ez.get_ele("b_step_toolbox").style.display = 'inline-block'; //tool;
 }
 function dispTimeUp(timeUp){
 	ez.get_ele("b_step_time_up").style.display = timeUp;
 }
 function dispVid(vid){
-	ez.get_ele("b_step_vid_rec").style.display = vid;
+	ez.get_ele("b_step_vid_rec").style.display = 'inline-block'; //vid;
 }
 function dispVoice(voice){
-	ez.get_ele("b_step_voice_rec").style.display = voice;
+	ez.get_ele("b_step_voice_rec").style.display = 'inline-block'; //voice;
 }
 function dispToolDone(toolDone){
 	ez.get_ele("b_toolbox_done").style.display = toolDone;
 }
 function dispTakePic(take){
-	ez.get_ele("b_take_pic").style.display = take;
+	ez.get_ele("b_take_pic").style.display = 'inline-block'; //take;
 }
 function dispPicNextStep(next){
 	ez.get_ele("b_pic_next").style.display = next;
@@ -172,6 +199,20 @@ function dispEnd(allDone){
 
 
 
+// step headers
+
+function changeTimeLimitHeader(myTitle){
+	ez.get_ele("step_time_limit").textContent = myTitle;
+}
+function toggleTimerOn(){
+	//ez.get_ele("time-icon").src = "img/hourglass.png";
+	ez.get_ele("time-icon").src = "img/main/timer-active.png";
+}
+function toggleTimerOff(){
+	//ez.get_ele("time-icon").src = "img/hourglassG.png";
+	ez.get_ele("time-icon").src = "img/main/timer-inactive.png";
+}
+
 function changeTitle(myTitle){
 	ez.get_ele("step_title").innerHTML = myTitle;
 	ez.get_ele("photo_capture_title").innerHTML = myTitle;
@@ -184,12 +225,14 @@ function changeButtonText(myButtonText){
 }
 function changePic(myPic){
 	ez.get_ele("step_pic").src = myPic;
-	//ez.get_ele("photo_capture_pic").src = myPic;
+}
 
+function changePopupText(text) {
+  ez.get_ele("bubble-text").innerHTML = text;
 }
 
 // click buttons for instruction page
-ez.c("b_step_instr", function(event){
+ez.c("next-button", function(event){
 	changeInstr();
 });
 ez.c("b_step_vid_voice_rec", function(event){
@@ -213,18 +256,28 @@ ez.c("start_voice_rec", function(event){
 	if (!recording_voice & allow_voice_rec)
 		startVoiceRec();
 });
+ez.c("b_step_vid_rec", function(event){
+	showVidRec();
+});
+ez.c("start_vid_rec", function(event){
+	if (allow_vid_rec)
+		startVidRec();
+});
 ez.c("b_step_time_up", function(event){
 	ez.hide("vid_voice_rec");
 	ez.hide("vid_rec");
 	ez.hide("voice_rec");
 	ez.show("step_instr");
+    ez.show('step_pic');
 
 	// reset voice page parameters
 	recording_voice = false;
 	allow_voice_rec = true;
-	ez.get_ele("start_voice_rec").style.backgroundColor = "red";
+	allow_vid_rec = true;
+	ez.get_ele("start_voice_rec").style.backgroundColor = "#ea4e4e";
+	ez.get_ele("start_vid_rec").style.backgroundColor = "#ea4e4e";
 	ez.get_ele("start_voice_rec_word").innerHTML = "<h3>Record</h3>";
-	ez.get_ele("voice_rec_timer_pic").src = "img/voice.png";
+	ez.get_ele("voice_rec_timer_pic").src = "img/empathy/interview-animation/1.png";
 
 	changeInstr();
 });
@@ -253,9 +306,14 @@ ez.c("start_timer", function(event){
 ez.c("b_timer_done", function(event){
 	timer_on = false;
 	allow_timer = true;
-	ez.get_ele("start_timer").style.backgroundColor = "red";
+	ez.get_ele("start_timer").style.backgroundColor = "#ea4e4e";
 	ez.get_ele("start_timer_word").innerHTML = "<h3>Start Timer</h3>";
 	ez.hide("timer");
+	ez.show("step_pic_div");
+	ez.get_ele("timer_pic").src = "img/ideate/timer/1.png";
+
+	changeTimeLimitHeader(" ");
+	toggleTimerOff();
 
 	var text = "Now, take pictures of any notes or sketches you made for this step. ";
 	changeText(text);
@@ -273,128 +331,149 @@ function changeInstr(){
 
 	switch(currStep){
 		case 'e_start':
+      ez.show("bubble-overlay");
 			stepName = 'empathy';
-			title = "1. Empathy";
-			text = 	"Empathy is the ability to understand and share the feelings of another. " +
-				"We must first come to understand our user in order to properly identify their needs. " +
-				"<br><br>Before we start, remember to be as positive and as open-minded as you can be! Anything is possible. There is no win, no fail, just make. Let's get started and have some fun!";
-			pic = "img/empathy.png";
-			buttonText = "Start!";
-			changeTitle(title);
-			changeText(text);
-			changePic(pic);
-			changeButtonText(buttonText);
 
-			hideButtons();
-			dispStep("block");
+      ez.show("next-button");
+      ez.show("next-button-bottomflap");
+			toggleTimerOff();
 
-			currStep='e_int1';
-		break;
-		case 'e_int1':
+			dispStepButton("block");
 			title = "Interview";
-			text = 	"In this initial step, you will get to understand the user by asking open-ended questions (what/why/why not). " +
-				"Take a look at the example questions if you are unsure what type of open-ended questions to ask. You want to get your partner to tell you as many stories as they can within the time limit! <br> When you are ready, click the video/voice record to record your interview.";
-			pic = "img/interview.png";
+			text = 	"In this initial step, you will get to understand the user by asking <p id='oequestions' style='display:inline-block;position:static;color:#35b7e5;font-weight:bold;line-size:5vw;margin:0;padding:0;'><strong>open-ended questions</strong></p>.";
+			pic = "img/empathy/interview/1.png";
 			changeTitle(title);
 			changeText(text);
+      ez.c('oequestions',function() {
+        //This should popup the dinosaur with the chat bubble
+        //explaining what "open-ended questions" are.
+        var popuptext = "An <strong>open-ended question</strong> doesn't have just one answer, like a <b>Yes</b> or a <b>No</b>.<br><br><strong>Open-ended questions</strong> start with words like <b>What? Why?</b> or <b>Why not?</b>";
+        changePopupText(popuptext);
+        ez.show("bubble-overlay");
+      });
 			changePic(pic);
+			changeTimeLimitHeader("5:00");
+			toggleTimerOn();
 
 			hideButtons();
 			dispQuest("block");
-			dispRec("block");
+
 
 			currStep='e_int2';
 		break;
 		case 'e_int2':
-			title = "Deeper Interview";
-			text = "Did you get all the info you needed? It's difficult to achieve " +
-					"in less than 5 minutes. So, it's time to dig deeper! Try to expand on the experiences your partner shared with you. A good place to start is with stories that your partner did not enjoy too much because that means there is something wrong for you to improve!";
-			pic = "img/interview.png";
+      ez.hide('next-button');
+			title = "Interview";
+			text = "<strong><font size='4vw'>GOAL: </font></strong> Get your partner to tell you as many stories as they can within the time limit!";
+			pic = "img/empathy/interview/2.png";
 			changeTitle(title);
 			changeText(text);
-			changePic(pic);
+			changeTimeLimitHeader("5:00");
+			toggleTimerOn();
 
 			hideButtons();
 			dispQuest("block");
 			dispRec("block");
 
-			currStep='e_tool1';
+			currStep='d_start';
 		break;
 		case 'e_tool1':
-			title = "Empathy Tool";
+			title = "";
 			text = 	"Now that you've got all this info, it's time to put it all into perspective. " +
 				"You've got several tools at your disposal. Select each to learn about them " +
 				"and touch ready when you've chosen one you like!";
-			pic = "img/toolbox.png";
+			pic = "img/empathy/tool/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader("3:00 ");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('empathy-tool');
 			dispTool("block");
 
-			currStep='e_complete';
+			currStep='d_start';
 		break;
 		case 'e_complete':
 			title = "Empathy Done";
 			text = 	"You have gotten to understand your user. Now on to the next step!";
 			pic = "img/empathy.png";
+
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			changeClass("b_step_instr", "next_step_button_div");
 
 			currStep='d_start';
 		break;
 		case 'd_start':
-			currStepNum = 2;
+      ez.show("next-button");
+      ez.show("bubble-overlay");
+      var popuptext = "<strong>Well done!</strong> <br><br>You've finished the first step and have gotten to know your partner better. Let's continue our journey and move on to the <strong>define</strong> stage!"
+      changePopupText(popuptext);
+			nextStep();
 			stepName = 'define';
 			counterColorStep(currStepNum);
 			e_complete = true;
 
-			title = "2. Define";
-			text = 	"It's time to define the problem based on how you understood your partner. " +
-					"Try to make the correct problem clearer and more focused by checking with your partner.";
+			title = "Define";
+			text = 	"In this second step you will use what you've learned in the previous step to <strong>define a problem</strong>. You should work closely with your partner in this stage to make sure you define the correct problem.";
 			pic = "img/define.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
 
-			currStep='d_tool1';
+			currStep='d_goal';
 		break;
+    case 'd_goal':
+      text = "<strong><font size='4vw'>GOAL: </font></strong> Create a statement that clearly states your partner's problem. Make sure to get to the root of the problem and not just scratch the surface.";
+      changeText(text);
+      hideButtons();
+      currStep='d_fillin1';
+      break;
 		case 'd_tool1':
 			title = "Identify The Problem";
 			text = 	"In this step, you will be taking all of the information you gathered about your partner " +
 					"and pinpoint precisely what the issue is. The Define tools should help you.";
-			pic = "img/toolbox.png";
+			pic = "img/define/tool/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader("3:00");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('define-tool');
 			dispTool("block");
 
 			currStep='d_fillin1';
 		break;
 		case 'd_fillin1':
-			title = "Identify The Problem";
-			text = 	"What is the problem statement that you came up with? " +
-					"Try to make it short, sweet, and sexy. Then fill it in below: ";
-			pic = "img/define.png";
+			title = "Identify";
+			text = 	"Identify your partner's problem. Keep it short and sweet. Then fill it in below:";
+			pic = "img/define/identify/1.png";
 			buttonText = "Submit";
 			ez.show("define_form");
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			dispStepButton("block");
 
 			currStep='d_fillin2';
 		break;
@@ -405,23 +484,23 @@ function changeInstr(){
 			ez.hide("define_form");
 			title = "Problem Identified";
 			text = 	"Here's what you came up with: ";
-			pic = "img/define.png";
-			buttonText = "Next Step!";
+			pic = "img/define/identify-animation/1.png";
 
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeButtonText(buttonText);
 
-			define_statement.textContent = client_name + " needs a way to " + client_problem + " because " + client_reason;
+      var define_statement_text = client_name + " needs a way to " + client_problem + " because " + client_reason;
+			define_statement.textContent = define_statement_text;
 			define_statement.style.fontSize = "7.5vw";
 			define_statement.style.textAlign = "center";
 			document.getElementById("step_text").appendChild(define_statement);
+      var d = getDateFormat();
+      file.createFile('DesignThinking/' + project_name + '/' + d + 'define' + '.txt',define_statement_text);
 
 			hideButtons();
-			dispStep("block");
 
-			currStep='d_complete';
+			currStep='i_start';
 		break;
 		case 'd_complete':
 			title = "Define Done";
@@ -430,73 +509,75 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			changeClass("b_step_instr", "next_step_button_div");
 
 			currStep='i_start';
 		break;
 		case 'i_start':
-			currStepNum = 3;
+			nextStep();
+      ez.show("bubble-overlay");
+      var popuptext = "<strong>Nice!</strong><br><br>Only three steps left! Our next destination is the <strong>ideate</strong> step.<br><br>Come on, let's go!";
+      changePopupText(popuptext);
 			stepName = 'ideate';
 			counterColorStep(currStepNum);
 			d_complete = true;
 
-			title = "3. Ideate";
+			title = "Ideate";
 			text = 	"Now that you have defined the problem, it's time to come up with some solutions! ";
 			pic = "img/ideate.png";
-			buttonText = "Start";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			changeButtonText(buttonText);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
 
 			currStep='i_tool1';
 		break;
 		case 'i_tool1':
-			title = "Discover Solutions";
-			text = 	"In this step, you will brainstorm as many solutions as you can for the problem within the time limit. There are no " +
-					"wrong answers, so be as creative and as crazy as you can be! If you need some help try looking at the ideate tools.";
-			pic = "img/toolbox.png";
+			title = "Solutions";
+			text = 	"<strong><font size='4vw'>GOAL: </font></strong>Come up with as many solutions as possible to the problem you defined in the define step!";
+			pic = "img/ideate/sketch-animation/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader("5:00");
+      toggleTimerOff();
 
 			hideButtons();
-			dispTool("block");
+			hideAllTools();
+			showClass('ideate-tool');
 
 			currStep='i_feedback';
 		break;
 		case 'i_feedback':
-			title = "Obtain Solutions Feedback";
-			text = 	"Now that you've come up with a few solutions, it's time to get some feedback from " +
-					"your user. Grab a pen and paper to take notes on how they feel about your solutions. " +
-					"For the user: try to give some constructive criticisms! " +
-					"Start the timer when you're ready!";
-			pic = "img/ideate.png";
+			title = "Feedback";
+			text = 	"<strong><font size='4vw'>GOAL: </font></strong>Show your partner your solutions and see which solutions work. Make sure to know why your solutions don't work so you can improve them!";
+			pic = "img/ideate/feedback/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			ez.show("timer");
+			changeTimeLimitHeader("4:00");
+      toggleTimerOff();
 
 			hideButtons();
 
 			currStep='i_revise';
 		break;
 		case 'i_revise':
-			title = "Revise Solutions";
-			text = 	"Now that you've gotten user feedback, it's time to revise your solution. " +
-					"Pick one of your solution and use the feedback to enhance it " +
-					"or combine it with other solutions.  " +
-					"Grab a pen and paper and sketch it out. Start the timer when you're ready!";
-			pic = "img/ideate.png";
+			title = "Revise";
+			text = 	"No one can get it right the first time!<br><br><strong><font size='4vw'>GOAL: </font></strong>Use the feedback from before to come up with a more <strong>awesome</strong> idea!";
+			pic = "img/ideate/feedback-animation/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-			ez.show("timer");
+			changeTimeLimitHeader("3:00");
+      toggleTimerOff();
 
 			hideButtons();
 
@@ -509,41 +590,50 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			changeClass("b_step_instr", "next_step_button_div");
 
 			currStep='p_start';
 		break;
 		case 'p_start':
-			currStepNum = 4;
+			nextStep();
 			stepName = 'prototype';
 			counterColorStep(currStepNum);
 			i_complete = true;
 
-			title = "4. Prototype";
+			title = "Prototype";
 			text = 	"The only way to do it is to do it! ";
 			pic = "img/prototype.png";
-			buttonText = "Start";
+			buttonText = "Start!";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
 			changeButtonText(buttonText);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			changeClass("b_step_instr", "page_content_button_div");
+			dispStepButton("block");
 
 			currStep='p_tool1';
 		break;
 		case 'p_tool1':
 			title = "Build";
 			text = 	"Gather your materials and create your prototype! Don't worry if you don't have a full workshop prepared to make the prototype. The prototype can be a symbol or even a drawing of your idea.";
-			pic = "img/toolbox.png";
+			pic = "img/prototype/build/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader("10:00");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('prototype-tool');
 			dispTool("block");
 
 			currStep='p_complete';
@@ -551,45 +641,56 @@ function changeInstr(){
 		case 'p_complete':
 			title = "Prototype Done";
 			text = 	"Congrats on building your prototype! Only one step left, so let's move on!";
-			pic = "img/ideate.png";
+			pic = "img/prototype/build-animation/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			changeClass("b_step_instr", "next_step_button_div");
 
 			currStep='t_start';
 		break;
 		case 't_start':
-			currStepNum = 5;
+			nextStep();
 			stepName = 'test';
 			counterColorStep(currStepNum);
 			p_complete = true;
 
-			title = "5. Test";
+			title = "Test";
 			text = 	"Give your user the full experience! " +
 					"Allow them to test out your product. " +
 					"Be sure to provide them with your vision if you couldn't fully build it. ";
 			pic = "img/test.png";
+			buttonText = "Start!";
+			changeButtonText(buttonText);
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
+			changeClass("b_step_instr", "page_content_button_div");
+			dispStepButton("block");
 
 			currStep='t_tool1';
 		break;
 		case 't_tool1':
 			title = "User Test Ride";
 			text = 	"See if the Test tools can help you get essential feedback. ";
-			pic = "img/toolbox.png";
+			pic = "img/test/solution-animation/1.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader("4:00");
+			toggleTimerOn();
 
 			hideButtons();
+			hideAllTools();
+			showClass('test-tool');
 			dispTool("block");
 
 			currStep='t_complete';
@@ -601,32 +702,33 @@ function changeInstr(){
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
+			changeTimeLimitHeader(" ");
+			toggleTimerOff();
 
 			hideButtons();
-			dispStep("block");
 
 			currStep='end';
 		break;
 		case 'end':
-			p_complete = true;
+			t_complete = true;
 
-			title = "Congrats on Finishing!";
+			title = "Congratulations!";
 			text = 	"Hope you came up with some great solutions! "+
 					"You will be able to review your process from the \'Open Project\' menu button at the main menu.";
-			pic = "img/logo.png";
+			pic = "img/main/dennis.png";
 			changeTitle(title);
 			changeText(text);
 			changePic(pic);
-
+      ez.hide("topbar");
+      nextStep();
+      ez.hide("next-button");
 			hideButtons();
 			dispEnd("block");
 
 			currStep='start';
 		break;
-
-
-
 		default:
+      break;
 	}
 
 }
@@ -634,7 +736,7 @@ function changeInstr(){
 // after clicking on the vid/voice record button from instruction page
 function showRec(){
 	ez.show("step_instr");
-  text = "You can choose to use either video recording or voice recording to record your interview process.";
+  text = "You can choose to use either <strong>video recording</strong> or <strong>voice recording</strong> to record your interview process.";
   changeText(text);
 	ez.show("vid_voice_rec");
 
@@ -645,6 +747,8 @@ function showRec(){
 }
 // after clicking on the voice record button on vid/voice page
 function showVoiceRec(){
+  ez.hide('step_instr');
+  ez.hide('step_pic');
 	ez.show("voice_rec");
 	hideButtons();
 	dispQuest2("block");
@@ -654,11 +758,31 @@ function startVoiceRec(){
 	recording_voice = true;
 	allow_voice_rec = false;
 	ez.get_ele("start_voice_rec").style.backgroundColor = "gray";
-	ez.get_ele("start_voice_rec_word").innerHTML = "<h3>0</h3>";
+	ez.get_ele("start_voice_rec_word").innerHTML = "<h3>" + record_time_limit + " secs</h3>";
 
 	// after time is up, go to next instruction
 	hideButtons();
 	recordAudio();
+}
+
+// after clicking on the vid record button on vid/voice page
+function showVidRec(){
+  ez.hide('step_instr');
+  ez.hide('step_pic');
+  ez.show("vid_rec");
+  hideButtons();
+  dispQuest2("block");
+}
+// after clicking on start voice record button
+function startVidRec(){
+	//recording_voice = true;
+	allow_vid_rec = false;
+	ez.get_ele("start_vid_rec").style.backgroundColor = "gray";
+
+	// after time is up, go to next instruction
+	hideButtons();
+	captureVideo();
+	dispTimeUp("block");
 }
 
 // after clicking on the toolbox button from instruction page
@@ -679,6 +803,8 @@ function showPhotoCapture(){
 	ez.show("pic_page");
 
 	hideButtons();
+	changeTimeLimitHeader(" ");
+	toggleTimerOff();
 	dispTakePic("block");
 	// change to instructions page
 	dispPicNextStep("block");
@@ -689,12 +815,10 @@ function startTimer(){
 	timer_on = true;
 	allow_timer = false;
 	ez.get_ele("start_timer").style.backgroundColor = "gray";
-	ez.get_ele("start_timer_word").innerHTML = "<h3>0</h3>";
-
-	var time_limit = 8;	// sec
+	ez.get_ele("start_timer_word").innerHTML = "<h3>" + record_time_limit + " secs</h3>";
 	// after time is up
 	hideButtons();
-	startTimerCount(time_limit);
+	startTimerCount(record_time_limit);
 }
 
 // shows explanation of the application
@@ -713,14 +837,15 @@ function restartHome(){
 	ez.hide("step_one_page");
 	ez.hide("step_instr");
   ez.hide('top_bar');
+  ez.hide('header_bar_TEST');
 	ez.show("startup");
   ez.get_ele('circle-one').style.backgroundColor = '#848484';
-  ez.get_ele('bar-one').style.borderColor = '#E4E4E4';
+  ez.get_ele('bar-one').style.borderColor = 'white';
   ez.get_ele('circle-two').style.backgroundColor = '#848484';
-  ez.get_ele('bar-two').style.borderColor = '#E4E4E4';
+  ez.get_ele('bar-two').style.borderColor = 'white';
   ez.get_ele('circle-three').style.backgroundColor = '#848484';
-  ez.get_ele('bar-three').style.borderColor = '#E4E4E4';
+  ez.get_ele('bar-three').style.borderColor = 'white';
   ez.get_ele('circle-four').style.backgroundColor = '#848484';
-  ez.get_ele('bar-four').style.borderColor = '#E4E4E4';
+  ez.get_ele('bar-four').style.borderColor = 'white';
   ez.get_ele('circle-five').style.backgroundColor = '#848484';
 }
