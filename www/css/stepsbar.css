@@ -75,3 +75,13 @@
 	font-size:4em;
 	display:inline-block;
 }
+
+#tool-icon{
+	max-height: 1em;
+	margin-bottom:auto;
+	font-size:4em;
+	display:inline-block;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}

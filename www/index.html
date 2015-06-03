@@ -48,6 +48,7 @@
         <h1 style="text-align:left; color:white; font-weight:normal; font-size:3em; display:inline-block;"><img id="menu-icon" src="img/main/menu.png" />DinoThink</h1>
   			<img id="imgProfile" style="display:none" />
   			<div id="toolbox_content" style="display:none"></div>
+			<div id="toolbox_desc" style="display:none"></div>			
     </div>
 
     <div id="bubble-overlay">
@@ -223,7 +224,7 @@
 				</div>-->
 			<!--<div id="b_step_take_pic" class="page_content_button_div" style="backgound-color:green">
 				<img src="img/camera.png" class="button_pic" /></div>-->
-				<div id="b_step_toolbox" class="page_content_button_div" style="backgound-color:red; width:50vw;"><h2>Let's Work!</h2></div>
+				<div id="b_step_toolbox" class="page_content_button_div" style="backgound-color:red; width:50vw;"><h2>Toolbox</h2></div>
 				<!--<div id="b_step_toolbox" class="main_content_button_div">
 				  <img style="height:auto; width:auto;max-height:90px" src="img/main/tools.png" />
 				</div>-->
@@ -283,17 +284,6 @@
 				<img src="img/questions.png" class="button_pic" /></div>-->
         </div>
 
-
-		<!-- Toolbox -->
-		<div id="tool_box" class="main_content_div">
-			<h2 class="screen-title">Toolbox</h2>
-			<div class="screen-content">
-				<ul id = "toolbox-list" class="toolbox">
-				</ul>
-			</div>
-            <div id="b_toolbox_done" class="page_content_button_div"><h2>Tool Done/Time's Up</h2></div>
-        </div>
-
 		<!-- Photo Capture -->
         <div id="photo_capture" class="main_content_div">
 			<div id="pic_page" class="main_content_div">
@@ -331,6 +321,7 @@
 		<div id="step-bar-container" style="margin-left:auto">
 				<img id="time-icon" src="img/main/timer-inactive.png" />
 				<div id="step_time_limit"> CurrTime </div>
+				<img id="tool-icon" src="img/main/tools.png" style="display:none" />
 		</div>
 
 
@@ -367,6 +358,28 @@
           </div>
           <div id='whatis_button_close'>CLOSE</div>
         </div>
+		
+		<!-- Toolbox -->
+		<div id="tool_box" class="main_toolbox_overlay">
+			<div class="main_toolbox_content_container">
+		
+			<h2 class="screen-title">Toolbox</h2>
+			<div class="screen-content">
+				<ul id = "toolbox-list" class="toolbox">
+				</ul>
+			</div>
+			</div>
+			<div id="b_toolbox_done" class="toolbox_close">CLOSE</div>
+        </div>
+		
+        <div id="toolbox_overlay">
+			<div id="toolbox_content_container">
+				<h2 id='toolbox_title'></h2>
+				<img id='toolbox_img' />
+				<p id='toolbox_text'></p>
+			</div>
+          <div id='toolbox_button_close'>BACK</div>
+        </div>			
 
     <script type="text/javascript" src="js/globals.js"></script>
     <script type="text/javascript" src="js/ez.js"></script>

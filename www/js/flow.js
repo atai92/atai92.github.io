@@ -25,6 +25,7 @@ ez.c('b_step_start_timer', function(event) {
     changePopupText(popuptext);
     ez.show("bubble-overlay");
     showPhotoCapture();
+	ez.hide("tool-icon");
   });
   ez.hide('b_step_start_timer');
 });
@@ -38,6 +39,7 @@ ez.c('overlay_start', function(event) {
   nextStep();
   stepName = 'empathy';
   counterColorStep(currStepNum);
+		toolbox.get_from_global();
   		toolbox.populate_tools();
 		hideAllTools();
   changeInstr();
@@ -159,8 +161,6 @@ function hideButtons(){
 	ez.hide("b_step_vid_rec");
 	ez.hide("b_step_voice_rec");
 
-	// toolbox buttons
-	ez.hide("b_toolbox_done");
 
 	// photo capture buttons
 	// ez.hide("b_take_pic");
@@ -291,11 +291,19 @@ ez.c("questions_exit_button", function(event){
 	hideQuestions();
 });
 
-
-
-ez.c("b_toolbox_done", function(event){
-	showPhotoCapture();
+// open/close tools
+ez.c("tool-icon", function(){
+	ez.show("tool_box");
 });
+ez.c("toolbox_button_close", function(){
+	ez.hide("toolbox_overlay");
+});
+ez.c("b_toolbox_done", function(){
+	ez.hide("tool_box");
+});
+
+
+
 ez.c("b_step_voice_rec", function(event){
 	showVoiceRec();
 });
@@ -331,9 +339,7 @@ ez.c("b_step_time_up", function(event){
 ez.c("b_step_toolbox", function(event){
 	showToolbox();
 });
-ez.c("b_toolbox_done", function(event){
-	showPhotoCapture();
-});
+
 
 // photo capture buttons
 ez.c("b_take_pic", function(event){
@@ -387,7 +393,8 @@ function changeInstr(){
 			toggleTimerOff();
 			dispStepButton("block");
 			title = "Interview";
-			text = 	"In this initial step, you will get to understand the user by asking <p id='oequestions' style='display:inline-block;position:static;color:#35b7e5;font-weight:bold;line-size:5vw;margin:0;padding:0;'><strong>open-ended questions</strong></p>.";
+			text = 	"In this initial step, you will get to understand the user by asking <p id='oequestions' style='display:inline-block;position:static;color:#35b7e5;font-weight:bold;line-height:5vw;margin:0;padding:0;'><strong>open-ended questions</strong></p>."+
+					"<br><br>Take notes on your interview. Set up your notes like <p id='e_int_notes' class='bubble-click-text'>this</p>.";
 			pic = "img/empathy/interview/1.png";
 			changeTitle(title);
 			changeText(text);
@@ -398,6 +405,14 @@ function changeInstr(){
         changePopupText(popuptext);
         ez.show("bubble-overlay");
       });
+      ez.c('e_int_notes',function() {
+		var title2 = "Interview Notes";
+		var src2 = "img/tools/e_int.png";
+        var text2 = "Take your first set of notes on the left side. Dig deeper later on the right side. ";
+        toolbox.change_tool(title2, src2, text2);
+        ez.show("toolbox_overlay");
+      });	  
+	  
 			changePic(pic);
       record_time_limit = time_for_step["interview"];
       Timer.reset();
@@ -471,12 +486,20 @@ function changeInstr(){
 			currStep='d_goal';
 		break;
     case 'd_goal':
+      ez.show("bubble-overlay");
+      var popuptext = "I'd like to introduce the <strong>toolbox</strong>!<br><br> Before certain steps, you can access the toolbox by clicking on the wrench in the <strong>bottom right corner</strong>.<br><br>You can become familiiar with the tools before you start the timer, but you can also look at it while the timer is running.<br><br>Try <strong>clicking</strong> on it <strong>now</strong>.";
+      changePopupText(popuptext);	
+	
       text = "<strong><font size='4vw'>GOAL: </font></strong> Create a statement that <strong>clearly</strong> states your partner's problem. Make sure to get to the <strong>root of the problem</strong> and not just scratch the surface.";
       changeText(text);
       hideButtons();
       ez.hide("next-button");
       ez.show("b_step_start_timer");
       record_time_limit = time_for_step["define"];
+		hideAllTools();
+		showClass('define-tool');
+	  ez.show("tool-icon");	  
+	  
       Timer.reset();
       ez.show("b_step_start_timer");
       ez.hide("next-button");
@@ -558,6 +581,9 @@ function changeInstr(){
 			changeText(text);
 			changePic(pic);
       record_time_limit = time_for_step["ideate_solutions"];
+		hideAllTools();
+		showClass('ideate-tool');
+	  ez.show("tool-icon");	  
 
       ez.show("b_step_start_timer");
       ez.hide("next-button");
@@ -566,8 +592,6 @@ function changeInstr(){
       toggleTimerOn();
 
 			hideButtons();
-			hideAllTools();
-
 			currStep='i_feedback';
 		break;
 		case 'i_feedback':
@@ -651,15 +675,16 @@ function changeInstr(){
 			changeText(text);
 			changePic(pic);
       record_time_limit = time_for_step["prototype_build"];
+		hideAllTools();
+		showClass('prototype-tool');
+	  ez.show("tool-icon");	  
+	  
       Timer.reset();
       ez.show("b_step_start_timer");
       ez.hide("next-button");
 			toggleTimerOn();
 
 			hideButtons();
-			hideAllTools();
-			showClass('prototype-tool');
-
 			currStep='t_start';
 		break;
 		case 'p_complete':
@@ -713,15 +738,16 @@ function changeInstr(){
 			changeText(text);
 			changePic(pic);
       record_time_limit = time_for_step["test"];
+		hideAllTools();
+		showClass('test-tool');
+	  ez.show("tool-icon");	  
+	  
       Timer.reset();
       ez.show("b_step_start_timer");
       ez.hide("next-button");
 			toggleTimerOn();
 
 			hideButtons();
-			hideAllTools();
-			showClass('test-tool');
-
 			currStep='end';
 		break;
 		case 't_complete':

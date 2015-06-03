@@ -38,7 +38,6 @@ var app = {
 		file.createDir("DesignThinking/Toolbox");
 		file.createDir("DesignThinking/Toolbox/txt");
 		file.createFile("DesignThinking/Toolbox/txt/toolbox_content.txt", original_toolbox_content);
-		toolbox.toolbox_files("DesignThinking/Toolbox/txt/toolbox_content.txt");
 
 		//file.summary_Txt("DesignThinking/Toolbox/txt/toolbox_content.txt");
 

@@ -62,3 +62,14 @@ strong{
 #bubble-text {
   font-family: ralewayregular;
 }
+
+
+.bubble-click-text{
+	display:inline-block;
+	position:static;
+	color:#35b7e5;
+	font-weight:bold;
+	line-height:5vw;
+	margin:0;
+	padding:0;
+}

@@ -11,8 +11,8 @@
  function captureSuccess(mediaFiles) {
     var i, len;
     for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-        moveVid(mediaFiles[i]);		
-        uploadFile(mediaFiles[i]);
+        moveVid(mediaFiles[i].fullPath);		
+        //uploadFile(mediaFiles[i]);
     }
 }
 
