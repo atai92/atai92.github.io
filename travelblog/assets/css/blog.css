@@ -1,0 +1,92 @@
+@font-face {
+    font-family: manifesto;
+    src: url(MANIFESTO.ttf);
+}
+
+@font-face {
+    font-family: jaapokki;
+    src: url(Jaapokki-Regular.otf);
+}
+
+@font-face {
+  font-family: nexalight;
+  src: url(NexaLight.otf);
+}
+
+@font-face {
+  font-family: dense;
+  src: url(Dense-Regular.otf);
+}
+
+@font-face {
+  font-family: infinity;
+  src: url(Infinity.ttf);
+}
+
+@font-face {
+  font-family: kilogram;
+  src: url(KiloGram_KG.otf);
+}
+
+body {
+  margin: 0 0 0 0;
+  padding 0 0 0 0;
+}
+
+#headerbar {
+  font-family: manifesto;
+  height: 80px;
+  background-color: rgb(78, 212, 184);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 45px;
+  text-align: center;
+  line-height:80px;
+  font-weight: bold;
+}
+
+body img {
+  position: fixed;
+  width:100px;
+  height:100px;
+  border-radius:70px;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+body img:hover {
+  cursor: hand;
+}
+
+#blog-container {
+  width: 100%;
+  height: calc(100% - 80px);
+  overflow: auto;
+  background-color: rgb(21, 46, 66);
+}
+
+.blog_entry {
+  font-family: nexalight;
+  position: static;
+  color: rgba(199, 227, 213, 0.8);
+  min-width: 600px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px dotted gray;
+  padding-bottom: 20px;
+  margin-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
+}
+
+.blog_entry h1 {
+  font-family: dense;
+  font-weight: lighter;
+}
+
+.blog_entry h2 {
+  font-family: jaapokki;
+  font-weight: lighter;
+}
