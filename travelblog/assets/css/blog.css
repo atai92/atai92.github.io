@@ -31,6 +31,7 @@
 body {
   margin: 0 0 0 0;
   padding 0 0 0 0;
+  overflow: hidden;
 }
 
 #headerbar {
@@ -42,6 +43,12 @@ body {
   text-align: center;
   line-height:80px;
   font-weight: bold;
+  min-width: 700px;
+  overflow: hidden;
+}
+
+#headerbar:hover {
+  cursor: default;
 }
 
 body img {
@@ -74,7 +81,7 @@ body img:hover {
   margin-left: auto;
   margin-right: auto;
   border-bottom: 1px dotted gray;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   margin-top: 16px;
   padding-left: 20px;
   padding-right: 20px;
@@ -89,4 +96,10 @@ body img:hover {
 .blog_entry h2 {
   font-family: jaapokki;
   font-weight: lighter;
+}
+
+strong {
+  font-family: nexalight;
+  font-weight: bolder;
+  color: rgb(78, 212, 184);
 }
