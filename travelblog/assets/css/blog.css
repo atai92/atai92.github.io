@@ -80,12 +80,12 @@ body img:hover {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
-  border-bottom: 1px dotted gray;
+  border-bottom: 1px dashed rgba(175, 255, 250, 0.85);
   padding-bottom: 30px;
   margin-top: 16px;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .blog_entry h1 {
@@ -100,6 +100,6 @@ body img:hover {
 
 strong {
   font-family: nexalight;
-  font-weight: bolder;
-  color: rgb(78, 212, 184);
+  font-weight: lighter;
+  font-size: 22px;
 }
