@@ -4,13 +4,13 @@ var plog = [
   ["June 26th, 2015",
     ["./assets/img/IMG_dinovalley.jpg","Went to Dinosaur Valley and saw dinosaur fossils."]],
   ["June 27th, 2015",
-    ["./assets/img/IMG_03124.jpg",""],
-    ["./assets/img/IMG_03133.jpg",""],
-    ["./assets/img/IMG_03135.jpg",""],
-    ["./assets/img/IMG_03136.jpg",""],
-    ["./assets/img/IMG_03139.jpg",""],
-    ["./assets/img/IMG_03144.jpg",""],
-    ["./assets/img/IMG_03149.jpg",""],
+    ["./assets/img/IMG_031241.jpg",""],
+    ["./assets/img/IMG_031331.jpg",""],
+    ["./assets/img/IMG_031351.jpg",""],
+    ["./assets/img/IMG_031361.jpg",""],
+    ["./assets/img/IMG_031391.jpg",""],
+    ["./assets/img/IMG_031441.jpg",""],
+    ["./assets/img/IMG_031491.jpg",""],
     ]
 ];
 
