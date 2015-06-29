@@ -2,15 +2,15 @@ var plog = [
   ["June 25th, 2015",
     ["./assets/img/IMG_20150625_185154.jpg","After a super long flight, we finally reached Kwunming and ate our first dinner in China!!"]],
   ["June 26th, 2015",
-    ["./assets/img/dinovalley.jpg","Went to Dinosaur Valley and saw dinosaur fossils."]],
+    ["./assets/img/IMG_dinovalley.jpg","Went to Dinosaur Valley and saw dinosaur fossils."]],
   ["June 27th, 2015",
-    ["./assets/img/DSC03124.jpg",""],
-    ["./assets/img/DSC03133.jpg",""],
-    ["./assets/img/DSC03135.jpg",""],
-    ["./assets/img/DSC03136.jpg",""],
-    ["./assets/img/DSC03139.jpg",""],
-    ["./assets/img/DSC03144.jpg",""],
-    ["./assets/img/DSC03149.jpg",""],
+    ["./assets/img/IMG_03124.jpg",""],
+    ["./assets/img/IMG_03133.jpg",""],
+    ["./assets/img/IMG_03135.jpg",""],
+    ["./assets/img/IMG_03136.jpg",""],
+    ["./assets/img/IMG_03139.jpg",""],
+    ["./assets/img/IMG_03144.jpg",""],
+    ["./assets/img/IMG_03149.jpg",""],
     ]
 ];
 
