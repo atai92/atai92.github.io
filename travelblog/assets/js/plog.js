@@ -22,10 +22,10 @@ var plog = [
     ["./assets/img/IMG_031491.jpg",""],
     ["./assets/img/june/IMG_20150627_091130.jpg",""],
     ["./assets/img/june/IMG_20150627_101712.jpg","Saw this cute thing at a beverage shop. Tried their coconut milk and sugar cane drink. It was super refreshing!"],
-    ["./assets/img/june/IMG_20150627_141812.jpg","Saw this on the super long bus ride to Shangri-la."]
+    ["./assets/img/june/IMG_20150627_141812.jpg",""]
   ],
   ["June 28th, 2015",
-    ["./assets/img/june/IMG_20150628_105402.jpg","Finally arrived at Shangri-la!"],
+    ["./assets/img/june/IMG_20150628_105402.jpg","After a 5 hour bus ride, we finally arrived at Shangri-la!"],
     ["./assets/img/june/IMG_20150628_093926.jpg","The temple is being restored and is HUGE!!"],
     ["./assets/img/june/IMG_20150628_100759.jpg","Close-up of one of the temples."],
     ["./assets/img/june/IMG_20150628_101933.jpg",""],
