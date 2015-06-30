@@ -25,7 +25,7 @@ var plog = [
     ["./assets/img/june/IMG_20150627_141812.jpg","Saw this on the super long bus ride to Shangri-la."]
   ],
   ["June 28th, 2015",
-    ["./assets/img/june/IMG_20150628_105402.jpg","Finally arrived at Shangri-la!"]
+    ["./assets/img/june/IMG_20150628_105402.jpg","Finally arrived at Shangri-la!"],
     ["./assets/img/june/IMG_20150628_093926.jpg","The temple is being restored and is HUGE!!"],
     ["./assets/img/june/IMG_20150628_100759.jpg","Close-up of one of the temples."],
     ["./assets/img/june/IMG_20150628_101933.jpg",""],
