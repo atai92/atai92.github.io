@@ -36,6 +36,18 @@ var plog = [
     ["./assets/img/june/IMG_20150628_120126.jpg","Owner had a badass sword."],
     ["./assets/img/june/IMG_20150628_120408.jpg","Neat bow and arrows too. Very fury."],
     ["./assets/img/june/IMG_20150628_141759.jpg","Spin the wheel to change your fate!"]
+  ],
+  ["June 29th, 2015",
+    ["./assets/img/june/IMG_20150629_104512.jpg","Visited some shop that specializes in silver. A framed picture of a bird made with silver."],
+    ["./assets/img/june/IMG_20150629_110749.jpg","There was a picture of some fish and lotus flowers."],
+    ["./assets/img/june/IMG_20150629_154109.jpg",""],
+    ["./assets/img/june/IMG_20150629_154216.jpg","Saw this little cutey. Hehehe."],
+    ["./assets/img/june/IMG_20150629_155721.jpg","Cloudy with a chance of sandstorms... Was dusty because there are people building things nearby."],
+    ["./assets/img/june/IMG_20150629_170730.jpg","OMG! The Smirnoff Ice of China?"],
+    ["./assets/img/june/IMG_20150629_170739.jpg","Hello Kitty is an alcoholic? -- Cocktail drinks with Hello Kitty on it..."]
+  ],
+  ["June 30th, 2015",
+    ["./assets/img/june/IMG_20150701_174156.jpg","Hot pot for dinner today! Didn't have much meat and had a TON of mushrooms... The soup had a pretty good flavor at the end."]
   ]
 ];
 
