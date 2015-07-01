@@ -47,7 +47,7 @@ var plog = [
     ["./assets/img/june/IMG_20150629_170739.jpg","Hello Kitty is an alcoholic? -- Cocktail drinks with Hello Kitty on it..."]
   ],
   ["June 30th, 2015",
-    ["./assets/img/june/IMG_20150701_174156.jpg","Hot pot for dinner today! Didn't have much meat and had a TON of mushrooms... The soup had a pretty good flavor at the end."]
+    ["./assets/img/june/IMG_20150701_174156.jpg","Hot pot for dinner today! Didn't have much meat and had a TON of mushrooms... Like 90% mushrooms, 5% meat, and 5% noodles. The soup did have a pretty good taste to it afterwards though."]
   ]
 ];
 
