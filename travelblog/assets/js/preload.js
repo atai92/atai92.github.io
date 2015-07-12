@@ -17,10 +17,8 @@
 */
 
 var preload_array = [];
-preload_array[0] = id.get();
-preload_array[1] = id.get();
-preload_array[2] = id.get();
 var current_img_index = 1;
+preload_init();
 
 /*
 * @param: direction, src
@@ -31,14 +29,21 @@ var current_img_index = 1;
 * Requires correct function in order to choose the correct image to display.
 */
 
-function preload(direction, src) {
+function preload(direction) {
   switch (direction) {
     case 'next':
+      preload_array[current_img_index].style.display = "none";
       current_img_index++;
       if (current_img_index > 2) current_img_index = 0;
       if (current_img_index + 1 > 2) var preload_index = 0;
       else var preload_index = current_img_index + 1;
-      preload_array[preload_index].src = src;
+      preload_array[current_img_index].style.display = "block";
+      var month_entry = plog[date_pos];
+      var month_entry_index = entry_pos + 1;
+      if (month_entry_index >= month_entry.length) month_entry_index = 1;
+      var entry = month_entry[month_entry_index];
+      var img_src = entry[0];
+      preload_array[preload_index].src = img_src;
       break;
     case 'previous':
       current_img_index--;
@@ -48,4 +53,33 @@ function preload(direction, src) {
       preload_array[preload_index].src = src;
       break;
   }
+}
+
+function preload_init() {
+  preload_array[0] = id.get("pic1");
+  preload_array[1] = id.get("pic2");
+  preload_array[2] = id.get("pic3");
+  preload_array[0].style.display = "none";
+  preload_array[1].style.display = "block";
+  preload_array[2].style.display = "none";
+  current_img_index = 1;
+
+  var month_entry = plog[date_pos];
+  var entry = month_entry[entry_pos];
+  var img_src = entry[0];
+  preload_array[1].src = img_src;
+
+  var month_entry_index = month_entry.length - 1;
+  if (month_entry_index < 0) month_entry_index = 1;
+  entry = month_entry[month_entry_index];
+  img_src = entry[0];
+  preload_array[0].src = img_src;
+
+  month_entry_index = entry_pos + 1;
+  if (month_entry_index >= month_entry.length - 1) month_entry_index = 1;
+  entry = month_entry[month_entry_index];
+  img_src = entry[0];
+  preload_array[2].src = img_src;
+
+  id.hide("pic");
 }

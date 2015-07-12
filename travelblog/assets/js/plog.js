@@ -4,7 +4,7 @@ var plog = [
   ["June 26th, 2015",
     ["./assets/img/june/IMG_20150626_092247.jpg","Went to Dinosaur Valley park. There were fake dinosaurs that gave it a Jurassic Park feel to it."],
     ["./assets/img/IMG_dinovalley.jpg","There were dinosaur fossils too!"],
-    ["./assets/img/june/IMG_20150626_094458.jpg","TONS of dinosaur fossils!"]
+    ["./assets/img/june/IMG_20150626_094458.jpg","TONS of dinosaur fossils!"],
     ["./assets/img/june/IMG_20150626_094523.jpg","This one looks like the first blade from Supernatural... Hehehe."],
     ["./assets/img/june/IMG_20150626_094547.jpg","This one looked badass."],
     ["./assets/img/june/IMG_20150626_094836.jpg","More dinos!"],
@@ -57,14 +57,12 @@ var entry_pos = 1;
 updatePlog();
 
 id.click("pic", function(){
-  entry_pos++;
-  var month_entry = plog[date_pos];
-  var entry = month_entry[entry_pos];
-  if (entry_pos >= month_entry.length) {
-    entry_pos = 1;
-    }
-  updatePlog();
+  picClick();
 });
+
+id.click("pic1", picClick);
+id.click("pic2", picClick);
+id.click("pic3", picClick);
 
 id.click("prev-date",function(){
   date_pos--;
@@ -73,6 +71,7 @@ id.click("prev-date",function(){
     date_pos = plog.length - 1;
   }
   updatePlog();
+  preload_init();
 });
 
 id.click("next-date",function() {
@@ -82,6 +81,7 @@ id.click("next-date",function() {
     date_pos = 0;
   }
   updatePlog();
+  preload_init();
 });
 
 function updatePlog() {
@@ -92,4 +92,15 @@ function updatePlog() {
   id.get("date").innerHTML = month_entry[0] + "&ensp;&nbsp;&emsp;&emsp;&emsp; Picture " + entry_pos + " of " + (month_entry.length - 1);
   id.get("pic").src = img_src;
   id.get("pic-desc").innerHTML = img_desc;
+}
+
+function picClick() {
+  entry_pos++;
+  var month_entry = plog[date_pos];
+  var entry = month_entry[entry_pos];
+  if (entry_pos >= month_entry.length) {
+    entry_pos = 1;
+    }
+  updatePlog();
+  preload('next');
 }
