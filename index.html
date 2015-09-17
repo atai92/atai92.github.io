@@ -1,63 +1,76 @@
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="assets/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 		<title>Alan Tai</title>
 	</head>
 	<body>
-		<div id="container">
-			<div id="headerbar"><div id="header_text_container">Alan Tai</div></div>
+		<div id="main-container">
 
-			<div id="contents">
-				<div id="filler"></div>
-				<div id="linksbar">
-					<div id='AboutLink' class="linksbutton">About</div>
-					<div id='BlogLink' class="linksbutton">Blog</div>
-					<div id='ResumeLink' class="linksbutton">Resume</div>
-					<div id='ProjectsLink' class="linksbutton">Projects</div>
-				</div>
-				<div id="filler"></div>
+      <div id="title-bar">Alan Tai</div>
 
-				<div id="content_container">
-					<div id="about" class="content_holder">
-						<p>
-							<img src="assets/pictures/croppedprofile.png" style="height: 475px"/>
-							<h1>About me.</h1>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							Hello there!
-							<br>&nbsp&nbsp&nbsp&nbspMy name is Alan Tai. I am going to be a University of California, Davis graduate with a major in Computer Science and Engineering and a  minor in Communications at the end of Spring 2015.
-							<br>
-							<br>
-							&nbsp&nbsp&nbsp&nbspThis website is not complete yet. This is just a test of a possible layout.
-							<br>
-							<br>
-							Regardless, hope you enjoy your stay!
-							<br>
-						</p>
-					</div>
-					<div id="blog" class="content_holder">
-						<p id="blogText"></p>
-					</div>
-					<div id="resume" class="content_holder">
-						<p id="resumeText"></p>
-					</div>
-					<div id="projects" class="content_holder">
-						<p id="projectsText"></p>
-					</div>
-				</div>
-			</div>
+      <div id="inner-container">
+        <div id="links-container"><div id="resume-button">Resume</div><div id="contact-button">Contact</div><div id="hobbies-button">Hobbies</div><div id="github-button">GitHub</div></div>
 
-			<!--<div id="footerbar"><div style="width:105px; margin:0 auto"><p style="font-size: 10px; text-align: center">Copyrighted by nobody!</p></div></div>
-			-->
-		</div>
+        <div id="content-container">
+          <div class="content">
+            <h1>Welcome to my website!</h1>
+            <p>My name is Alan Tai. I hold a Bachelors degree in Science with a major in Computer Science and Engineering, and a minor in Communications. I graduated in the Spring of 2015 at the University of California, Davis.<br><br>
+            If you would like to know more about my professional life, then do not hesitate to check out my <a href="https://www.linkedin.com/pub/alan-tai/a2/38/913">LinkedIn</a>.</p>
+          </div>
+
+          <div class="content">
+            <h1 id="resume">My Resume</h1>
+            <p>You can take a look at and download my resume by visiting this <a href="https://www.dropbox.com/s/qdm62u1iehxleju/resume%202015.pdf?dl=0">DropBox link</a>.</p>
+          </div>
+
+          <div class="content">
+            <h1 id="contact">Contact Me</h1>
+            <p>The best way to contact me is through email. You can reach me by emailing <a href="mailto:awtai@ucdavis.edu">awtai@ucdavis.edu</a> and I will try my best to email you back as soon as possible!</p>
+
+          </div>
+
+          <div class="content">
+            <h1 id="hobbies">My Hobbies</h1>
+            <h2>DIY (Do it Yourself!)</h2>
+            <p>Whether they are virtual applications or physical objects, I love to build them! One of the things that I enjoy building the most are computers. The thrill of gathering components and assembling them into something that helps me build more things is very exciting and very fulfilling. There is little that can beat buying parts at places like Ikea and assembling them at home. <br><br> I also love seeing other people embark on great DIY projects as well. I occasionally frequent <a href="http://reddit.com/r/diy">Reddit/r/DIY</a> to see what people have done with their kitchens, furniture, home, etc. Although those DIY projects usually require more skill than I currently have, I hope one day I will acquire such a skill to be able to build something amazing from scratch.</p>
+            <h2>Exercise</h2>
+            <p>I love to do a little bit of exercise every day to make sure that I am healthy. However, health is just icing on the cake because I exercise to give myself a little more energy throughout the day and to have fun! </p>
+            <h2>Games</h2>
+            <p>I love getting together with friends to play board or table games. Having physical interaction with others in a friendly competition is extremely fun and rewarding.</p>
+          </div>
+        </div>
+
+        <div id="footer">Website made by Alan Tai. </div>
+      </div>
+    </div>
+
+		<script type="text/javascript">
+			document.getElementById("hobbies-button").addEventListener("click", function(event) {
+        document.getElementById("hobbies").scrollIntoView();
+      });
+      document.getElementById("hobbies-button").addEventListener("mouseover", function(event) {
+        document.getElementById("hobbies-button").scrollIntoView();
+      });
+      document.getElementById("contact-button").addEventListener("click", function(event) {
+        document.getElementById("contact").scrollIntoView();
+      });
+      document.getElementById("contact-button").addEventListener("mouseover", function(event) {
+        document.getElementById("contact-button").scrollIntoView();
+      });
+      document.getElementById("resume-button").addEventListener("click", function(event) {
+        document.getElementById("resume").scrollIntoView();
+      });
+      document.getElementById("resume-button").addEventListener("mouseover", function(event) {
+        document.getElementById("resume-button").scrollIntoView();
+      });
+      document.getElementById("github-button").addEventListener("click", function(event) {
+        window.open("https://github.com/atai92");
+      });
+      document.getElementById("github-button").addEventListener("mouseover", function(event) {
+        document.getElementById("github-button").scrollIntoView();
+      });
+		</script>
+
 		<script type="text/javascript" src="assets/js/ez.js"></script>
-		<script type="text/javascript" src="assets/js/about.js"></script>
-		<script type="text/javascript" src="assets/js/resume.js"></script>
-		<script type="text/javascript" src="assets/js/projects.js"></script>
-		<script type="text/javascript" src="assets/js/blog.js"></script>
-		<script type="text/javascript" src="assets/js/init.js"></script>
 	</body>
 </html>

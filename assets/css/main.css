@@ -1,0 +1,136 @@
+@font-face {
+    font-family: manifesto;
+    src: url(travelblog/assets/css/MANIFESTO.ttf);
+}
+
+@font-face {
+    font-family: jaapokki;
+    src: url(travelblog/assets/css/Jaapokki-Regular.otf);
+}
+
+@font-face {
+  font-family: nexalight;
+  src: url(travelblog/assets/css/NexaLight.otf);
+}
+
+@font-face {
+  font-family: dense;
+  src: url(travelblog/assets/css/Dense-Regular.otf);
+}
+
+@font-face {
+  font-family: infinity;
+  src: url(travelblog/assets/css/Infinity.ttf);
+}
+
+@font-face {
+  font-family: kilogram;
+  src: url(travelblog/assets/css/KiloGram_KG.otf);
+}
+
+html, body {
+    margin:0;
+    padding:0;
+    height: 100%;
+    background-color: rgba(30,37,36,1);
+}
+
+h1 {
+  font-family: jaapokki;
+  font-weight: normal;
+}
+
+p {
+  margin-left: 15px;
+}
+
+a {
+  font-size: 22px;
+  color: rgba(100,100,200,0.9);
+  font-variant: normal;
+}
+
+.content {
+  margin-bottom: 10vh;
+  width: 600px;
+  margin: 0 auto 10vh auto;
+  font-size: 18px;
+}
+
+#main-container {
+  width: 100%;
+  height: 100%;
+}
+
+#title-bar {
+  font-family: manifesto;
+  background-color: rgb(78, 212, 184);
+  color: rgba(255, 255, 255, 0.85);
+  height: 10%;
+  text-align: center;
+  font-size: 7vh;
+  line-height: 10vh;
+
+}
+
+#inner-container {
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  margin: 0 auto;
+  height: 90%;
+}
+
+#links-container {
+  font-family: infinity;
+  font-weight: bold;
+  position: static;
+  width: 100%;
+  height: 7.5%;
+  font-size: 3.5vh;
+  line-height: 7vh;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(74, 208, 180);
+  color: rgba(255, 255, 255, 0.89);
+  border-top: 1px dashed rgba(255, 255, 255, 0.375);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.375);
+}
+
+#links-container div {
+  display: inline-block;
+  position: static;
+  width: auto;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+#links-container div:hover {
+  cursor: hand;
+  padding-bottom: 1vh;
+  background-color: rgba(100, 228, 200, 0.99);
+}
+
+#footer {
+  font-family: jaapokki;
+  font-weight: lighter;
+  position: static;
+  background-color: rgba(0,0,0,0.1);
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 100px;
+  color: rgba(255, 255, 255, 0.30);
+  border-top: 1px dashed rgba(255,255,255,0.1);
+}
+
+#content-container {
+  position: static;
+  width: 90%;
+  font-family: sans-serif;
+  color: rgba(255, 255, 255, 0.80);
+  margin: 0 auto;
+}

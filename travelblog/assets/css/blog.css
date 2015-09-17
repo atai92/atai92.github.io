@@ -86,7 +86,7 @@ body img:hover {
   padding-left: 20px;
   padding-right: 20px;
   font-size: 18px;
-  -webkit-animation: slideup 2s;
+  -webkit-animation: slideup 1s;
   animation-name: slideup;
 }
 
