@@ -4,19 +4,32 @@ CSS
   blog.css
     Contains all style sheets for the blog.
 
+  plog.css
+    Contains all style sheets for the image container and image description container.
+
+  sidebar.css
+    Contains style sheets for the sidebar that pops up after clicking the icon picture at the top left.
+    
 
 JS
   id.js
     Contains all functions that simplify existing JavaScript functions
 
-  blog_functions.js
+  blog_functions.js [Deprecated]
     Contains all functions that manipulate the blog.
 
-  blog_entries.js
+  blog_entries.js [Deprecated]
     Contains the entries for blog.
     High chance of being deprecated.
       Entries will usually be very long, so creating individual dated js files that add entries to the array would be best for editing.
 
-  blog_init.js
+  blog_init.js [Deprecated]
     Loads the blog entries.
     May load other stuff...
+
+  plog.js
+    Loads all the picture blog stuff.
+    Has the click listeners for the next and previous date buttons on main page.
+    TODO:
+      Implement a preloading algorithm for images. --Preload the previous and next image.
+      Add transitions between images.

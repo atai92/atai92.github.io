@@ -1,21 +1,38 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="assets/css/blog.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/plog.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/sidebar.css" />
-		<title>Alan Tai</title>
+		<title>Alan's Travels</title>
 	</head>
 	<body>
     <img id="circle_icon" src="../assets/pictures/profile.jpg"/>
-    <div id="sidebar"><a href="https://www.facebook.com/alan.w.tai?fref=ts">My Facebook</a></div>
+    <div id="sidebar">
+			<a href="https://www.facebook.com/alan.w.tai?fref=ts">My Facebook</a>
+			<div id="helpButton">Help</div>
+		</div>
+		<div id="helpDate"></div>
+		<div id="helpPic"></div>
     <div id="headerbar">ALAN'S TRAVELS</div>
+		<div id="prev-date">Previous Date</div>
+		<div id="next-date">Next Date</div>
 
     <div id="blog-container">
-      <div id="blog"></div>
+			<div id="plog">
+				<div id="date">June 28th, 2015</div>
+				<img id="pic" src=""/>
+				<img id="pic1" src=""/>
+				<img id="pic2" src=""/>
+				<img id="pic3" src=""/>
+				<div id="pic-desc"></div>
+			</div>
+      <div id="blog" style="display:none"></div>
     </div>
     <script type="text/javascript" src="assets/js/id.js"></script>
 	  <script type="text/javascript" src="assets/js/blog_functions.js"></script>
     <script type="text/javascript" src="assets/js/blog_entries.js"></script>
-    <script type="text/javascript" src="assets/js/june24.2015.js"></script>
+		<script type="text/javascript" src="assets/js/plog.js"></script>
+		<script type="text/javascript" src="assets/js/preload.js"></script>
 
 
     <!--Must go last!-->
