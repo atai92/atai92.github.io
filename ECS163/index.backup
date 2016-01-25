@@ -1,0 +1,27 @@
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="/d3/d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            d3.select("body")
+				.append("p")
+				.text("New paragraph");
+			
+			d3.csv("unitrans-oct-2011.csv", function(data)
+				{
+				 var dataEnter = d3.select("body").selectAll("p").data(data).enter();
+				  
+				 dataEnter.append("span").html(function(d)
+				 {
+				  return d["stopTitle"] + "," + d["date"] + "," + d["time"] + "," + d["route"]
+							  + "," + d["boarding"] + "," + d["deboarding"] + "</br>";
+				 });
+				});
+
+        </script>
+    </body>
+</html>

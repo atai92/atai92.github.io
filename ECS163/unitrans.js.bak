@@ -1,0 +1,65 @@
+d3.csv("unitrans-oct-2011.csv", function(data)
+				{
+				 var dataEnter = d3.select("body").selectAll("p").data(data).enter();
+				  
+				 dataEnter.append("span").html(function(d)
+				 {
+				  return d["stopTitle"] + "," + d["date"] + "," + d["time"] + "," + d["route"]
+							  + "," + d["boarding"] + "," + d["deboarding"] + "</br>";
+				 });
+				});
+
+d3.csv("unitrans-oct-2011-small.csv", function(data) {
+	/*var dataEnter = d3.select("body").selectAll("p").data(data).enter();
+	dataEnter.append("text").html(function(d) {		
+		return d["stopTitle"] + ", Date: " + d["date"] + ", Time: " + d["time"] + ", Route: " + d["route"] + ", Number of People Boarding: " + d["boarding"] + ", Number of people deboarding: " + d["deboarding"] + "</br>";
+		});*/
+	data.forEach(function(d) {
+		// get the window size
+var width = window.innerWidth,
+	height = 80;
+
+// creat svg canvas
+var svg = d3.select("body").append("svg")
+				.attr("width", width)
+				.attr("height", height);
+
+// create a inner canvas and translate 
+var g = svg.append("g")
+           .attr("transform", "translate(20,20)");
+
+// create text
+var text = g.append("text")
+            .text(d["stopTitle"] + " and Route: " + d["route"] + " on " + d["date"] + " at " + d["time"])
+            .attr("x", -20)
+            .attr("y", 0);
+			
+var boardingT = g.append("text")
+			.text("Number of people boarding: " + d["boarding"])
+			.attr("x", 0)
+			.attr("y", 20);
+			
+var deboardingT = g.append("text")
+			.text("Number of people deboarding: " + d["deboarding"])
+			.attr("x", 0)
+			.attr("y", 43);
+
+// create a rectangle
+var rect = g.append("rect")
+              .attr("width", d["boarding"] * 10)
+              .attr("height", 17)
+              .attr("x", 220)
+              .attr("y", 10)
+              .attr("fill","green");
+var rect2 = g.append("rect")
+              .attr("width", d["deboarding"] * 10)
+              .attr("height", 17)
+              .attr("x", 220)
+              .attr("y", 30)
+              .attr("fill","red");
+	});
+	
+
+
+	console.log(data); //show that data is being loaded in the console.
+});
