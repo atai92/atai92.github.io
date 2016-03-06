@@ -1,6 +1,6 @@
 #top_button {
     position: fixed;
-    bottom:10vh;
+    bottom:5vh;
     left:47.5vw;
 }
 
@@ -8,8 +8,28 @@
     width: 50px;
     height: 50px;
     opacity: 0.8;
+    -webkit-animation: pulse 2s infinite;
+  animation-name: pulse;
 }
 
 #top_button img:hover {
     cursor: hand;
+}
+
+@-webkit-keyframes pulse {
+  0% {-webkit-transform: scale(1)
+    rotate(0deg);}
+  50% {-webkit-transform: scale(1.3)
+    rotate(0deg);}
+  100% {-webkit-transform: scale(1)
+    rotate(0deg);}
+}
+
+@-webkit-keyframes slowpulse {
+  0% {-webkit-transform: scale(1)
+    rotate(0deg);}
+  50% {-webkit-transform: scale(1.01225)
+    rotate(0deg);}
+  100% {-webkit-transform: scale(1)
+    rotate(0deg);}
 }
