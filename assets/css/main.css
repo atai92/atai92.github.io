@@ -1,31 +1,31 @@
 @font-face {
     font-family: manifesto;
-    src: url(travelblog/assets/css/MANIFESTO.ttf);
+    src: url(MANIFESTO.ttf);
 }
 
 @font-face {
     font-family: jaapokki;
-    src: url(travelblog/assets/css/Jaapokki-Regular.otf);
+    src: url(Jaapokki-Regular.otf);
 }
 
 @font-face {
   font-family: nexalight;
-  src: url(travelblog/assets/css/NexaLight.otf);
+  src: url(NexaLight.otf);
 }
 
 @font-face {
   font-family: dense;
-  src: url(travelblog/assets/css/Dense-Regular.otf);
+  src: url(Dense-Regular.otf);
 }
 
 @font-face {
   font-family: infinity;
-  src: url(travelblog/assets/css/Infinity.ttf);
+  src: url(Infinity.ttf);
 }
 
 @font-face {
   font-family: kilogram;
-  src: url(travelblog/assets/css/KiloGram_KG.otf);
+  src: url(KiloGram_KG.otf);
 }
 
 html, body {
@@ -55,6 +55,7 @@ a {
   width: 600px;
   margin: 0 auto 10vh auto;
   font-size: 18px;
+  min-height: 57.5vh;
 }
 
 #main-container {
@@ -70,7 +71,10 @@ a {
   text-align: center;
   font-size: 7vh;
   line-height: 10vh;
+}
 
+#title-bar:hover {
+    cursor: hand;
 }
 
 #inner-container {
@@ -118,7 +122,7 @@ a {
   font-weight: lighter;
   position: static;
   background-color: rgba(0,0,0,0.1);
-  height: 100px;
+  height: 12.5vh;
   width: 100%;
   text-align: center;
   font-size: 14px;
