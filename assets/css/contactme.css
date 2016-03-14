@@ -1,0 +1,62 @@
+.contactme {
+  position: fixed;
+  height: 7.5vh;
+  bottom: 0;
+  right: 0;
+  margin-right: 2vh;
+  margin-bottom: 2vh;
+}
+
+.contactme div {
+  position: relative;
+  display: inline-block;
+  height: 7.5vh;
+}
+
+.contactme div span {
+  visibility: hidden;
+  position: relative;
+  display: inline-block;
+  float: left;
+  height: 4vh;
+  background-color: rgb(51, 199, 214);
+  color: rgba(255, 255, 255, 0.89);
+  padding-left: 2vh;
+  padding-right: 4.5vh;
+  line-height: 4vh;
+  font-size: 2.5vh;
+  margin-right: -6vh;
+  border-radius: 0.5vh;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+.contactme a {
+  font-weight: none;
+  display: inline-block;
+  position: relative;
+  height: 7.5vh;
+  width: 7.5vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  background-color: rgb(74, 208, 180);
+  color: rgba(255, 255, 255, 0.89);
+  line-height: 7.5vh;
+  border-radius: 7.5vh;
+  font-size: 2.5vh;
+  font-family: sans-serif;
+  text-decoration: none;
+  text-align: center;
+}
+
+.contact-tooltip {
+  visibility: hidden;
+  opacity:0;
+  transition:visibility 0s linear 0.5s, opacity 0.5s linear;
+}
+
+.contactme div:hover span {
+  visibility: visible;
+  opacity:1;
+  transition-delay:0s;
+}

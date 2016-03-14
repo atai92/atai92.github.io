@@ -3,6 +3,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/totopbutton.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/contactme.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/dropdown.css" />
     <title>Alan Tai</title>
 </head>
 
@@ -13,32 +15,35 @@
         <div id="inner-container">
             <div id="links-container">
                 <div id="resume-button" class="link">Resume</div>
-                <div id="contact-button" class="link">Contact</div>
+                <div id="contact-button" class="link">Contact Me
+                    <div class="dropdown">
+                        <div class="descriptive">
+                            <a href="https://www.linkedin.com/pub/alan-tai/a2/38/913" id="linkedin-contact">LinkedIn</a>
+                            <p>Click the link above to connect with me on LinkedIn and to discover more about me!</p>
+                        </div>
+                        <div class="descriptive">
+                            <a href="mailto:awtai@ucdavis.edu" title="Click to email me at awtai@ucdavis.edu">Email</a>
+                            <p>The best way to contact me is by email, so click the link above to email me at awtai@ucdavis.edu!</p>
+                        </div>
+                    </div>
+                </div>
                 <div id="hobbies-button" class="link">Hobbies</div>
                 <div id="github-button" class="link">GitHub</div>
             </div>
 
             <div id="content-container">
                 <div class="content" id="welcome">
-                    <h1>Welcome to my website!</h1>
-                    <p>My name is Alan Tai. I attended the University of California, Davis from the Fall of 2010 till the Spring of 2015. 
-                        From the University of California, Davis I earned a Bachelors degree in Science with a major in Computer Science and Engineering,
-                        and a minor in Communications.
-                        <br>
-                        <br> If you would like to know more professional information about me check out my
-                        <a href="https://www.linkedin.com/pub/alan-tai/a2/38/913">LinkedIn</a>.</p>
+                    <h1>Hello and welcome to my website!</h1>
+                    <p>My name is Alan Tai. I attended the University of California, Davis from the Fall of 2010 till the Spring
+                        of 2015. From the University of California, Davis I earned a Bachelors degree in Science with a major
+                        in Computer Science and Engineering, and a minor in Communications.
+                    </p>
                 </div>
 
                 <div class="content" id="resume">
                     <h1>My Resume</h1>
                     <p>You can download and view my resume at <a href="https://www.dropbox.com/s/bae1441qfonrdem/resume.pdf?dl=0">DropBox link</a>.</p>
                     <object data="assets/pdf/resume.pdf" type="application/pdf" width="100%" height="100%"></object>
-                </div>
-
-                <div class="content" id="contact">
-                    <h1>Contact Me</h1>
-                    <p>The best way to contact me is through email. You can reach me by emailing <a href="mailto:awtai@ucdavis.edu">awtai@ucdavis.edu</a>                        and I will try my best to email you back as soon as possible!</p>
-
                 </div>
 
                 <div class="content" id="hobbies">
@@ -64,8 +69,7 @@
                     <p>I know I know. This should fall under exercise, but this is one of my hobbies that I really like that
                         I don't do as often as exercise, so I didn't want to clump them into one category. I do, however,
                         LOVE swimming more than the exercises I usually do five times a week. Dipping my head into the water
-                        and gliding through the water clears my head. It feels really relaxing and helps me concentrate on
-                        a single thought.</p>
+                        and gliding through the water clears my head. It is really relaxing!</p>
                 </div>
             </div>
 
@@ -73,12 +77,14 @@
                 <img src="assets/icons/totop.png" />
             </div>
             <div id="footer">Website made by Alan Tai. </div>
+
         </div>
     </div>
     <script type="text/javascript" src="assets/js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.scrollintoview.min.js"></script>
     <script type="text/javascript" src="assets/js/navbar.js"></script>
     <script type="text/javascript" src="assets/js/scrolltotop.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </body>
 
 </html>

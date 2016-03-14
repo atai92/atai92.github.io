@@ -9,13 +9,6 @@ $("#hobbies-button").click(function () {
     $("#welcome").hide(500);
 });
 
-$("#contact-button").click(function () {
-    $("#contact").show(1000);
-    $("#hobbies").hide(500);
-    $("#resume").hide(500);
-    $("#welcome").hide(500);
-});
-
 $("#resume-button").click(function () {
     $("#resume").show(1000);
     $("#contact").hide(500);

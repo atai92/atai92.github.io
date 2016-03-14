@@ -101,20 +101,14 @@ a {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.375);
 }
 
-#links-container div {
+.link {
   display: inline-block;
-  position: static;
+  position: relative;
   width: auto;
   padding-left: 1vw;
   padding-right: 1vw;
   margin-left: 1vw;
   margin-right: 1vw;
-}
-
-#links-container div:hover {
-  cursor: hand;
-  padding-bottom: 1vh;
-  background-color: rgba(100, 228, 200, 0.99);
 }
 
 #footer {

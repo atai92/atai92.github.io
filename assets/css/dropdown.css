@@ -1,0 +1,58 @@
+.link:hover {
+  cursor: hand;
+  padding-bottom: 1vh;
+  background-color: rgba(100, 228, 200, 0.99);
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: rgba(100, 228, 200, 0.99);
+    min-width: 30vw;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: -1vw;
+}
+
+#contact-button:hover .dropdown {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 3.5vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+
+.dropdown a:hover {
+    background-color: deepskyblue;
+}
+
+.descriptive {
+    display: block;
+}
+
+.descriptive p {
+    display: none;
+}
+
+.descriptive:hover p {
+    display: block;
+    font-size: 2.5vh;
+    background-color: indianred;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin: 0 0 0 0;
+    line-height: 3.5vh;
+    padding-top:1vh;
+    padding-bottom:1vh;
+    text-align: left;
+}
+
+.descriptive p:hover {
+    cursor: default;
+}
